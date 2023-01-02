@@ -71,7 +71,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Product</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="/admin/list-product" class="dropdown-item">List Product</a>
-                            <a href="/admin/list-product" class="dropdown-item">Add Product</a>
+                            <a href="/admin/add-product" class="dropdown-item">Add Product</a>
                         </div>
                     </div>
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>

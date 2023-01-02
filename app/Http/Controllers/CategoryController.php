@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Product;
 use Session;
 
@@ -25,7 +27,9 @@ class CategoryController extends Controller
     public function getModel()
     {
         // return view('admin.layouts.layout');
-        $data = Category::find(1)->products->toArray();
+        // $data = Category::find(1)->products->toArray();
+        // dd($data);
+        $data = Product::find(3)->images->toArray();
         dd($data);
     }
 
@@ -48,6 +52,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            // 'description' => 'required',
+        ],[
+            'name.required' => '* The name field is required.',
+            // 'description.required' => 'Nhập mô tả ',
+            'name.max' => 'Name field up to 255 characters',
+
+        ]);
+        if($validate->fails()){
+        return back()->withErrors($validate->errors())->withInput();
+        }
         try
             {
                 $cate = new Category;
@@ -113,6 +129,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            // 'description' => 'required',
+        ],[
+            'name.required' => '* The name field is required.',
+            // 'description.required' => 'Nhập mô tả ',
+            'name.max' => 'Name field up to 255 characters',
+
+        ]);
+        if($validate->fails()){
+        return back()->withErrors($validate->errors())->withInput();
+        }
         $categories = Category::find($id);
         $categories->name = $request->name;
         $categories->description = $request->description;
