@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
+use App\Models\User;
 use Session;
 
 
@@ -29,8 +30,15 @@ class CategoryController extends Controller
         // return view('admin.layouts.layout');
         // $data = Category::find(1)->products->toArray();
         // dd($data);
-        $data = Product::find(3)->images->toArray();
-        dd($data);
+        // $data = Category::find()->products->toArray();
+        // dd($data);
+        $data = Category::all();
+        foreach($data as $test){
+
+            dd($test->id);
+        }
+
+
     }
 
 

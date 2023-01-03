@@ -31,36 +31,57 @@
     <h2>Create Product</h2>
     <form action="/admin/add-product" method="post" style="width: 75%"  enctype="multipart/form-data">
         @csrf
+        <input type="text" name="user_id"  hidden class="form-control">
+
         <div class="form-group">
             <label for="Product Name">Product Name</label>
             <input type="text" name="name" class="form-control"  placeholder="Product Name" >
         </div></br>
-        <label for="Product Name">Image:</label>
-        <br>
-        <input type="file" class="form-control" name="photos[]" multiple />
-        <br><br>
 
-        {{-- <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" class="form-control" name="name" id="name">
-        </div>
         <div class="form-group">
-          <label for="name">Category:</label>
-            <select class="form-select" aria-label="Default select example">
+            <label for="name">Category:</label>
+              <select class="form-select" name="categories_id" id="categories_id" aria-label="Default select example">
                 <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                    @foreach ($category as $categories)
+                        <option value="{{ $categories->id }}">{{ $categories->name }}</option>
+                    @endforeach
+                </select>
+          </div></br>
+
+          <div class="form-group">
+            <label for="Quantity">Quantity</label>
+            <input type="text" name="quantity" class="form-control"  placeholder="" >
+          </div></br>
+
+          <div class="form-group">
+            <label for="Price">Price Old</label>
+            <input type="text" name="price_old" class="form-control"  placeholder="" >
+          </div></br>
+
+          <div class="form-group">
+            <label for="Price">Price New</label>
+            <input type="text" name="price_new" class="form-control"  placeholder="" >
+          </div></br>
+
+          <div class="form-group">
+            <label for="Product Name">Image:</label>
+            <br>
+            <input type="file" class="form-control" name="photos[]" multiple />
+          </div></br>
+
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" rows="5" name="description" id="description"></textarea>
+          </div></br>
+
+          <div class="form-group">
+            <label for="name">Status:</label>
+              <select class="form-select" name="status" id="status" aria-label="Default select example">
+                  <option selected value="1">Display</option>
+                  <option value="0">Hide</option>
               </select>
-        </div>
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" name="name" id="name">
-          </div>
-        <div class="form-group">
-          <label for="description">Description:</label>
-          <textarea class="form-control" rows="5" name="description" id="description"></textarea>
-        </div></br> --}}
+          </div></br>
+
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 @endsection

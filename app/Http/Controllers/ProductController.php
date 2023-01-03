@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Models\Product;
-
+use App\Models\Category;
+use App\Models\Inventory;
+use App\Models\Product_Category;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -26,7 +30,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.add');
+        $category = Category::all();
+        return view('admin.product.add',compact('category'));
     }
 
     /**
@@ -37,10 +42,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
-
         if($request->file('photos')){
             $path = public_path('tmp/uploads');
             if ( ! file_exists($path) ) {
@@ -56,16 +57,25 @@ class ProductController extends Controller
             }
         }
         // lưu product
-				$products= Product::create($request->all());
-                // duyệt từng ảnh và thực hiện lưu
-				foreach ($request->photos as $photo) {
-                    // $filename = $photo->storeAs('link', $photo->getClientOriginalName());
-					Image::create([
-						'product_id' => $products->id,
-                        'link' => $name
-					]);
-				}
-        return view('admin.product.add');
+                $inventories= Inventory::create([
+                    'quantity' => $request->quantity,
+                ]);
+
+
+            $product = $inventories->products()->create($request->all());
+
+            // duyệt từng ảnh và thực hiện lưu
+            foreach ($request->photos as $photo) {
+                Image::create([
+                    'product_id' => $product->id,
+                    'link' => $name
+                ]);
+            }
+
+
+
+
+        return redirect('');
 
 
     }

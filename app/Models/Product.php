@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
 use App\Models\Category;
-use App\Models\Product_Inventory;
+use App\Models\Inventory;
 
 
 class Product extends Model
@@ -18,13 +18,14 @@ class Product extends Model
 
     protected $fillable =[
         'name',
-        'price',
-        'image',
+        'price_old',
+        'price_new',
         'inventory_id',
-        'user_id',
+        // 'user_id',
         'status',
         'description'
     ];
+
 
 
     // one to many relationship
@@ -39,15 +40,11 @@ class Product extends Model
     public function categories()
     {
         // hasMany(RelatedModel, foreignKeyOnRelatedModel = category_id, localKey = id)
-        return $this->belongsToMany(Category::class,'products_categories', 'product_id');
+        return $this->belongsToMany(Category::class,'products_categories', 'product_id', 'id');
     }
 
 
-    // one to one relationship
-    public function inventories()
-    {
-        return $this->hasOne(Product_Inventory::class);
-    }
+
 
 
 }
