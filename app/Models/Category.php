@@ -24,7 +24,7 @@ class Category extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
 
-    //  many to many relationship
+    //  one to many relationship
     public function products()
     {
         // hasMany(RelatedModel, foreignKeyOnRelatedModel = category_id, localKey = id)

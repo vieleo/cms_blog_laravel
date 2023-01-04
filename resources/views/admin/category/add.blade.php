@@ -30,6 +30,12 @@
 @endif --}}
 {{-- end_validation --}}
 
+
+ {{ trans('messages.welcome') }}
+
+
+
+
     <h2>Create Category</h2>
     <form action="/admin/add-category" method="post">
         @csrf

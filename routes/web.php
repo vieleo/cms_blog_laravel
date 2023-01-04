@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,5 +62,16 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('/delete-product/{id}', [App\Http\Controllers\ProductController::class, 'destroy']);
     // test eloquent
 });
+
+
+Route::get('lang/{locale}', function($locale){
+    if (! in_array($locale, ['en', 'vi', 'cn'])) {
+        abort(404);
+    }
+    session()->put('locale', $locale);
+
+    return redirect()->back();
+});
+
 
 require __DIR__.'/auth.php';

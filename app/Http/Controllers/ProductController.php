@@ -22,7 +22,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $product = Product::all();
+        return view('admin.product.list',compact('product'));
     }
 
     /**
@@ -50,12 +51,12 @@ class ProductController extends Controller
             if ( ! file_exists($path) ) {
                 mkdir($path, 0777, true);
             }
-            $image = [];
+            $photos = [];
             if ($request->hasfile('photos')) {
                 foreach ($request->file('photos') as $file) {
                     $name = $file->getClientOriginalName();
                     $file->move($path, $name);
-                    $image[] = $name;
+                    $photos[] = $name;
                 }
             }
         }
@@ -65,9 +66,10 @@ class ProductController extends Controller
             ]);
 
             // relationship
-            $category = Category::findOrFail($request->category_id);
 
-            $category = $inventories->products()->create($request->all());
+
+            $category = Category::findOrFail($request->category_id);
+            $category =  $inventories->products()->create($request->all());
             // duyệt từng ảnh và thực hiện lưu
             foreach ($request->photos as $photo) {
                 Image::create([
@@ -75,6 +77,12 @@ class ProductController extends Controller
                     'link' => $name
                 ]);
             }
+
+
+            // $user = User::findOrFail($request->user_id);
+            // $test = $user->products()->create($request->all());
+
+
             $category = Category::all();
 
             //Kiểm tra delete để trả về một thông báo

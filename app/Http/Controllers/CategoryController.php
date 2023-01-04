@@ -28,15 +28,15 @@ class CategoryController extends Controller
     public function getModel()
     {
         // return view('admin.layouts.layout');
-        // $data = Category::find(1)->products->toArray();
-        // dd($data);
+        $data = Product::find(1)->images->toArray();
+        dd($data);
         // $data = Category::find()->products->toArray();
         // dd($data);
-        $data = Category::all();
-        foreach($data as $test){
+        // $data = Category::all();
+        // foreach($data as $test){
 
-            dd($test->id);
-        }
+        //     dd($test->id);
+        // }
 
 
     }

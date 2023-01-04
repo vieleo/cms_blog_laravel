@@ -91,6 +91,14 @@
                     <input class="form-control border-0" type="search" placeholder="Search">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item">
+                        <a href="{{ url('lang/vi') }}">
+                            <img src="/img/vi.png" alt="Tiếng Việt" style="width: 46px; height: 26px;">
+                        </a> |
+                        <a href="{{ url('lang/en') }}">
+                            <img src="/img/en.png" style="width: 46px; height: 26px;" alt="Tiếng Anh">
+                        </a>
+                    </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-envelope me-lg-2"></i>
