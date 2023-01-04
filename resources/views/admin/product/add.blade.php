@@ -31,7 +31,6 @@
     <h2>Create Product</h2>
     <form action="/admin/add-product" method="post" style="width: 75%"  enctype="multipart/form-data">
         @csrf
-        <input type="text" name="user_id"  hidden class="form-control">
 
         <div class="form-group">
             <label for="Product Name">Product Name</label>
@@ -40,7 +39,7 @@
 
         <div class="form-group">
             <label for="name">Category:</label>
-              <select class="form-select" name="categories_id" id="categories_id" aria-label="Default select example">
+              <select class="form-select" name="category_id" id="category_id" aria-label="Default select example">
                 <option selected>Open this select menu</option>
                     @foreach ($category as $categories)
                         <option value="{{ $categories->id }}">{{ $categories->name }}</option>

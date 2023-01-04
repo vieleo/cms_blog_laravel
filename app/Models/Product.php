@@ -19,6 +19,7 @@ class Product extends Model
     protected $fillable =[
         'name',
         'price_old',
+        'category_id',
         'price_new',
         'inventory_id',
         // 'user_id',
@@ -31,20 +32,12 @@ class Product extends Model
     // one to many relationship
     public function images()
     {
-        // hasMany(RelatedModel, foreignKeyOnRelatedModel = category_id, localKey = id)
         return $this->hasMany(Image::class, 'product_id');
     }
 
-
-    // many to many relationship
-    public function categories()
+    // one to many relationship
+    public function users()
     {
-        // hasMany(RelatedModel, foreignKeyOnRelatedModel = category_id, localKey = id)
-        return $this->belongsToMany(Category::class,'products_categories', 'product_id', 'id');
+        return $this->belongsTo(User::class, 'id');
     }
-
-
-
-
-
 }

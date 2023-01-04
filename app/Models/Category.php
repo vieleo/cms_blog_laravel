@@ -29,6 +29,6 @@ class Category extends Model
     {
         // hasMany(RelatedModel, foreignKeyOnRelatedModel = category_id, localKey = id)
         // return $this->hasMany(Product::class, 'category_id');
-        return $this->belongsToMany(Product::class,'products_categories','category_id','id');
+        return $this->hasMany(Product::class,'category_id','id');
     }
 }

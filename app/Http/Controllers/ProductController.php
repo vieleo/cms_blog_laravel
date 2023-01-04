@@ -10,6 +10,8 @@ use App\Models\Inventory;
 use App\Models\Product_Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Session;
+
 
 class ProductController extends Controller
 {
@@ -42,6 +44,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // img one to many
         if($request->file('photos')){
             $path = public_path('tmp/uploads');
             if ( ! file_exists($path) ) {
@@ -57,26 +60,30 @@ class ProductController extends Controller
             }
         }
         // lưu product
-                $inventories= Inventory::create([
-                    'quantity' => $request->quantity,
-                ]);
+            $inventories= Inventory::create([
+                'quantity' => $request->quantity,
+            ]);
 
+            // relationship
+            $category = Category::findOrFail($request->category_id);
 
-            $product = $inventories->products()->create($request->all());
-
+            $category = $inventories->products()->create($request->all());
             // duyệt từng ảnh và thực hiện lưu
             foreach ($request->photos as $photo) {
                 Image::create([
-                    'product_id' => $product->id,
+                    'product_id' => $category->id,
                     'link' => $name
                 ]);
             }
+            $category = Category::all();
 
-
-
-
-        return redirect('');
-
+            //Kiểm tra delete để trả về một thông báo
+            if ($category) {
+                Session::flash('success', 'Create Successful !');
+            }else {
+                Session::flash('error', 'Create Failed !');
+            }
+        return view('admin.product.add', compact('category'));
 
     }
 

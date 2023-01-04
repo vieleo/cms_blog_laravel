@@ -96,13 +96,6 @@ class CategoryController extends Controller
                 return $e->getMessage();
             }
 
-
-
-
-
-
-
-
     }
 
     /**
