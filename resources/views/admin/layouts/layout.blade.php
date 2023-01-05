@@ -40,7 +40,7 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="/dashboard" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
+                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>{{ trans('messages.admin') }}</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -49,28 +49,28 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">{{ Auth::user()->name }}</h6>
-                        <span>Admin</span>
+                        <span>{{ trans('messages.admin') }}</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="/dashboard" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Category</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>{{ trans('messages.category') }}</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="/admin/list-category" class="dropdown-item">List Category</a>
-                            <a href="/admin/add-category" class="dropdown-item">Add Category</a>
+                            <a href="/admin/list-category" class="dropdown-item">{{ trans('messages.list_category') }}</a>
+                            <a href="/admin/add-category" class="dropdown-item">{{ trans('messages.add_category') }}</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Product</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>{{ trans('messages.product') }}</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="/admin/list-product" class="dropdown-item">List Product</a>
-                            <a href="/admin/add-product" class="dropdown-item">Add Product</a>
+                            <a href="/admin/list-product" class="dropdown-item">{{ trans('messages.list_product') }}</a>
+                            <a href="/admin/add-product" class="dropdown-item">{{ trans('messages.add_product') }}</a>
                         </div>
                     </div>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
+                    {{-- <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
+                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a> --}}
                 </div>
             </nav>
         </div>
@@ -99,7 +99,7 @@
                             <img src="/img/en.png" style="width: 46px; height: 26px;" alt="Tiếng Anh">
                         </a>
                     </div>
-                    <div class="nav-item dropdown">
+                    {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-envelope me-lg-2"></i>
                             <span class="d-none d-lg-inline-flex">Message</span>
@@ -137,11 +137,13 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item text-center">See all message</a>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
+                            <span class="d-none d-lg-inline-flex">
+                                 {{ trans('messages.Notificatin') }}
+                            </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">

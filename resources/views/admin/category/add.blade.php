@@ -31,28 +31,29 @@
 {{-- end_validation --}}
 
 
- {{ trans('messages.welcome') }}
-
-
-
-
-    <h2>Create Category</h2>
+    <h2>{{ trans('messages.create_category') }}</h2>
     <form action="/admin/add-category" method="post">
         @csrf
         <div class="form-group">
-          <label for="name">Name:</label>
+          <label for="name">
+             {{ trans('messages.name_category') }}
+          </label>
           <input type="text" class="form-control" name="name" id="name">
           @error('name')
-            <span class="text-danger">{{$message}}</span>
+            <span class="text-danger">
+                {{$message}}
+            </span>
           @enderror
         </div>
         <div class="form-group">
-          <label for="description">Description:</label>
+          <label for="description">
+            {{ trans('messages.description') }}
+        </label>
           <textarea class="form-control" rows="5" name="description" id="description"></textarea>
           @error('description')
             <span class="text-danger">{{$message}}</span>
           @enderror
         </div></br>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary">{{ trans('messages.create') }}</button>
     </form>
 @endsection

@@ -1,4 +1,36 @@
 <?php
 return [
     'welcome' => 'Chào mừng bạn đến với Website!',
+    'category' => 'Danh Mục',
+    'product' => 'Sản Phẩm',
+    'admin' => 'Quản trị viên',
+    'description'=>'Mô tả',
+    'price_old' => 'Giá gốc',
+    'price_new' => 'Giá cũ',
+    'status' => 'Trạng thái',
+    'list_product' => 'Danh Sách Sản Phẩm',
+    'add_product' => 'Thêm Sản Phẩm',
+    'action' => 'Hoạt động',
+    'list_category' => 'Danh Sách Danh Mục',
+    'add_category' => 'Thêm Danh Mục',
+    'Notificatin'  => 'Thông báo',
+    'create_category'=>'TẠO DANH MỤC SẢN PHẨM',
+    'create_product'=>'Tạo sản phẩm',
+    'update' => 'Cập nhập',
+    'create' => 'Tạo',
+    'name_category' => 'Tên Danh Mục',
+    'name_product' => 'Tên Sản Phẩm',
+    'edit' => 'Sửa',
+    'delete' => 'Xoá',
+    'stt'=> 'STT',
+    'image' => 'Hình ảnh',
+    'update_category' => 'CẬP NHẬP DANH MỤC',
+    'update_product' => 'CẬP NHẬP SẢN PHẨM',
+    'select_category' => 'Chọn danh mục',
+    'quantity' => 'Số lượng',
+    'display' => 'Hiển thị',
+    'hide' => 'Ẩn',
+
+
+
 ];
