@@ -56,7 +56,6 @@ class ProductController extends Controller
         try
             {
             // lưu product
-
                 // relationship
                 $products = Product::all();
                 $category = Category::findOrFail($request->category_id);
@@ -122,7 +121,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        $products = Product::findOrFail($id);
+        $products->fill($request->all());
+        $products->update();
+        return redirect()->back();
+
     }
 
     /**
