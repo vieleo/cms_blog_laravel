@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -23,6 +22,14 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <style>
+        label {
+        font-weight: 800;
+        }
+    </style>
+
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -44,7 +51,7 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="{{ asset('img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
@@ -53,24 +60,22 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="/dashboard" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="/dashboard" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>{{ trans('messages.dasboard') }}</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>{{ trans('messages.category') }}</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2"></i>{{ trans('messages.category') }}</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="/admin/list-category" class="dropdown-item">{{ trans('messages.list_category') }}</a>
                             <a href="/admin/add-category" class="dropdown-item">{{ trans('messages.add_category') }}</a>
+                            <a href="/admin/list-category" class="dropdown-item">{{ trans('messages.list_category') }}</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>{{ trans('messages.product') }}</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="/admin/list-product" class="dropdown-item">{{ trans('messages.list_product') }}</a>
                             <a href="/admin/add-product" class="dropdown-item">{{ trans('messages.add_product') }}</a>
+                            <a href="/admin/list-product" class="dropdown-item">{{ trans('messages.list_product') }}</a>
                         </div>
                     </div>
-                    {{-- <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a> --}}
+                    <a href="/admin/list-user" class="nav-item nav-link"><i class="fa fa-user"></i>  {{ trans('messages.list_users') }}</a>
                 </div>
             </nav>
         </div>
@@ -87,8 +92,11 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control border-0" type="search" placeholder="Search">
+                <form class="d-none d-md-flex ms-4" action="">
+                    <input class="form-control border-0" type="text" name="key" placeholder="{{ trans('messages.search') }}">
+                    <button class="btn btn-primary" type="submit" id="searchsubmid">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item">
@@ -173,7 +181,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <x-dropdown-link :href="route('profile.edit')">
-                                        {{ __('Profile') }}
+                                        {{ __('messages.profile') }}
                             </x-dropdown-link>
                             <hr class="dropdown-divider">
                                 <!-- Authentication -->
@@ -182,7 +190,7 @@
                             <x-dropdown-link :href="route('logout')"
                                                 onclick="event.preventDefault();
                                                             this.closest('form').submit();">
-                                            {{ __('Log Out') }}
+                                            {{ __('messages.logout') }}
                                         </x-dropdown-link>
                                     </form>
                         </div>

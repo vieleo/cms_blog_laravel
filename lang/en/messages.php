@@ -30,6 +30,21 @@ return [
     'quantity' => 'Quantity',
     'display' => 'Display',
     'hide' => 'Hide',
+    'profile' => 'Profile',
+    'logout' => 'Log Out',
+    'search' => 'Search',
+    'dasboard'=>'Dasboard',
+    'list_order' => 'List Order',
+    'avatar' => 'Avatar',
+    'related_images' => 'Related Images',
+    'detail_product' => 'Detail Product',
+    'detail' => 'Detail',
+    'created_at' => 'Created_at',
+    'updated_at' => 'Updated_at',
+    'note' => 'Note',
+    'note_message' => 'Please fill in the information!',
+    'list_users' => 'List Users',
+
 
 
 ];

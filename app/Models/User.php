@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Product;
+use App\Models\Profile;
+use App\Models\Role;
+
+
 
 
 class User extends Authenticatable
@@ -27,6 +31,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'address',
+        'gender',
+        'birthdaytime'
     ];
 
     /**
@@ -52,5 +60,15 @@ class User extends Authenticatable
      public function products()
     {
         return $this->hasMany(Product::class, 'user_id', 'id');
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'user_id', 'id');
+    }
+
+    public function roles()
+    {
+        return $this->hasOne(Role::class, 'user_id', 'id');
     }
 }

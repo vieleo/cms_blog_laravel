@@ -19,7 +19,7 @@
 
 
 {{-- validation --}}
-{{-- @if ($errors->any())
+@if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -27,17 +27,20 @@
             @endforeach
         </ul>
     </div>
-@endif --}}
+@endif
 {{-- end_validation --}}
 
 
     <h2>{{ trans('messages.create_category') }}</h2>
+    <div class="form-group">
+        <label for=""style="font-wight:300">{{ trans('messages.note') }}: </label> <label style="color: red">(*)</label><label for="">{{ trans('messages.note_message') }}</label>
+     </div>
     <form action="/admin/add-category" method="post">
         @csrf
         <div class="form-group">
           <label for="name">
              {{ trans('messages.name_category') }}
-          </label>
+          </label> <label style="color: red">(*)</label>
           <input type="text" class="form-control" name="name" id="name">
           @error('name')
             <span class="text-danger">
@@ -48,7 +51,7 @@
         <div class="form-group">
           <label for="description">
             {{ trans('messages.description') }}
-        </label>
+        </label> <label style="color: red">(*)</label>
           <textarea class="form-control" rows="5" name="description" id="description"></textarea>
           @error('description')
             <span class="text-danger">{{$message}}</span>
@@ -56,4 +59,7 @@
         </div></br>
         <button type="submit" class="btn btn-primary">{{ trans('messages.create') }}</button>
     </form>
+    <script>
+        CKEDITOR.replace( 'description' );
+   </script>
 @endsection

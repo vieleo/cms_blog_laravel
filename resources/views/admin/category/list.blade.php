@@ -17,7 +17,9 @@
     <h2>{{ trans('messages.list_category') }}</h2>
     <a class="btn btn-primary" href="/admin/add-category">{{ trans('messages.add_category') }}</a>
     </div>
-    <table class="table table-bordered">
+    <p>Number of users: {{ count($categories) }}</p>
+
+    <table class="table table-bordered" id="table">
         <tr style="text-align: center;">
             <th>{{ trans('messages.stt') }}</th>
             <th>{{ trans('messages.name_category') }}</th>
@@ -28,7 +30,7 @@
         <tr>
             <td>{{ $category->id }}</td>
             <td>{{ $category->name }}</td>
-            <td>{{ $category->description }}</td>
+            <td>{!! $category->description !!}</td>
             <td style="text-align: center;">
                 <a class="btn btn-primary" href="/admin/edit-category/{{ $category->id}}">{{ trans('messages.edit') }}</a>
                 <a class="btn btn-danger show_confirm" href="/admin/delete-category/{{ $category->id}}" onclick="return confirm('You Sure Want Delete?')">{{ trans('messages.delete') }}</a>
@@ -36,4 +38,7 @@
         </tr>
         @endforeach
     </table>
+    <div class="paginate">
+        {{ $categories->links() }}
+    </div>
 @endsection

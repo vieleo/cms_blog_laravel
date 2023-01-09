@@ -16,6 +16,24 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <div class="mt-4">
+            <x-input-label for="phone" :value="__('Phone')" />
+            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="address" :value="__('Address')" />
+            <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="birthdaytime" :value="__('Birth date')" />
+            <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+        </div>
+        <div class="mt-4">
+            <x-input-label for="gender" :value="__('Gender')" />
+            <input type="radio" name="gender" value="1" checked>Nam
+            <input type="radio" name="gender" value="0">Nữ
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

@@ -28,17 +28,25 @@
 @endif
 {{-- endvalidation --}}
 
+
     <h2>{{ trans('messages.create_product') }}</h2>
+    <div class="form-group">
+       <label for=""style="font-wight:300">{{ trans('messages.note') }}: </label> <label style="color: red">(*)</label><label for="">{{ trans('messages.note_message') }}</label>
+    </div>
+
     <form action="/admin/add-product" method="post" style="width: 75%"  enctype="multipart/form-data">
         @csrf
-
         <div class="form-group">
-            <label for="Product Name">{{ trans('messages.name_product') }}</label>
+            <label for="Product Name">{{ trans('messages.name_product') }}</label> <label style="color: red">(*)</label>
             <input type="text" name="name" class="form-control"  placeholder="Product Name" >
+            @error('name')
+                <span class="text-danger">{{$message}}</span>
+            @enderror
         </div></br>
 
+
         <div class="form-group">
-            <label for="name">{{ trans('messages.category') }}</label>
+            <label for="name">{{ trans('messages.category') }}</label> <label style="color: red">(*)</label>
               <select class="form-select" name="category_id" id="category_id" aria-label="Default select example">
                 <option selected>{{ trans('messages.select_category') }}</option>
                     @foreach ($category as $categories)
@@ -48,18 +56,27 @@
           </div></br>
 
           <div class="form-group">
-            <label for="Quantity">{{ trans('messages.quantity') }}</label>
+            <label for="Quantity">{{ trans('messages.quantity') }}</label> <label style="color: red">(*)</label>
             <input type="text" name="quantity" class="form-control"  placeholder="" >
+            @error('quantity')
+                <span class="text-danger">{{$message}}</span>
+            @enderror
           </div></br>
 
           <div class="form-group">
-            <label for="Price">{{ trans('messages.price_old') }}</label>
+            <label for="Price">{{ trans('messages.price_old') }}</label> <label style="color: red">(*)</label>
             <input type="text" name="price_old" class="form-control"  placeholder="" >
+            @error('price_old')
+                <span class="text-danger">{{$message}}</span>
+            @enderror
           </div></br>
 
           <div class="form-group">
-            <label for="Price">{{ trans('messages.price_new') }}</label>
+            <label for="Price">{{ trans('messages.price_new') }}</label> <label style="color: red">(*)</label>
             <input type="text" name="price_new" class="form-control"  placeholder="" >
+            @error('price_new')
+                <span class="text-danger">{{$message}}</span>
+            @enderror
           </div></br>
 
           <div class="form-group">
@@ -69,8 +86,11 @@
           </div></br>
 
           <div class="form-group">
-            <label for="description">{{ trans('messages.description') }}</label>
-            <textarea class="form-control" rows="5" name="description" id="description"></textarea>
+            <label for="description">{{ trans('messages.description') }}</label> <label style="color: red">(*)</label>
+            <textarea class="form-control" rows="5" name="description"  id="description"></textarea>
+            @error('description')
+                <span class="text-danger">{{$message}}</span>
+            @enderror
           </div></br>
 
           <div class="form-group">
@@ -83,4 +103,7 @@
 
         <button type="submit" class="btn btn-primary">{{ trans('messages.create') }}</button>
     </form>
+        <script>
+             CKEDITOR.replace( 'description' );
+        </script>
 @endsection

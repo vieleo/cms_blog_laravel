@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\Image;
 use App\Models\Product;
-use App\Models\User;
 use Session;
+use App\Http\Requests\CategoryRequest;
 
 
 
@@ -21,24 +19,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = DB::table('categories')->paginate(10);
         return view('admin.category.list',compact('categories'));
     }
 
     public function getModel()
     {
-        // return view('admin.layouts.layout');
         $data = Product::find(1)->images->toArray();
         dd($data);
-        // $data = Category::find()->products->toArray();
-        // dd($data);
-        // $data = Category::all();
-        // foreach($data as $test){
-
-        //     dd($test->id);
-        // }
-
-
     }
 
 
@@ -58,20 +46,10 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $validate = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            // 'description' => 'required',
-        ],[
-            'name.required' => '* The name field is required.',
-            // 'description.required' => 'Nhập mô tả ',
-            'name.max' => 'Name field up to 255 characters',
 
-        ]);
-        if($validate->fails()){
-        return back()->withErrors($validate->errors())->withInput();
-        }
+        $cate = $request->validated();
         try
             {
                 $cate = new Category;
@@ -89,7 +67,6 @@ class CategoryController extends Controller
                 }else{
                     return "Data note Found";
                 }
-
             }
         catch (Exception $e)
             {
@@ -130,35 +107,25 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validate = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            // 'description' => 'required',
-        ],[
-            'name.required' => '* The name field is required.',
-            // 'description.required' => 'Nhập mô tả ',
-            'name.max' => 'Name field up to 255 characters',
+        try
+            {
+                $categories = Category::find($id);
+                $categories->name = $request->name;
+                $categories->description = $request->description;
+                $categories->save();
 
-        ]);
-        if($validate->fails()){
-        return back()->withErrors($validate->errors())->withInput();
-        }
-        $categories = Category::find($id);
-        $categories->name = $request->name;
-        $categories->description = $request->description;
-        $categories->save();
-
-        //Kiểm tra delete để trả về một thông báo
-        if ($categories) {
-            Session::flash('success', 'Update Successful !');
-        }else {
-            Session::flash('error', 'Update Failed !');
-        }
-
-        return redirect('/admin/list-category');
-
-
-
-
+                //Kiểm tra delete để trả về một thông báo
+                if ($categories) {
+                    Session::flash('success', 'Update Successful !');
+                }else {
+                    Session::flash('error', 'Update Failed !');
+                }
+            }
+        catch (Exception $e)
+            {
+                return $e->getMessage();
+            }
+            return redirect('/admin/list-category');
     }
 
     /**
@@ -169,17 +136,22 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $categories = Category::findOrFail($id);
-        $categories->delete();
+        try
+            {
+                $categories = Category::findOrFail($id);
+                $categories->delete();
 
-        //Kiểm tra delete để trả về một thông báo
-        if ($categories) {
-            Session::flash('success', 'Delete Successful !');
-        }else {
-            Session::flash('error', 'Delete Failed !');
-        }
-
+                //Kiểm tra delete để trả về một thông báo
+                if ($categories) {
+                    Session::flash('success', 'Delete Successful !');
+                }else {
+                    Session::flash('error', 'Delete Failed !');
+                }
+            }
+        catch (Exception $e)
+            {
+                return $e->getMessage();
+            }
         return redirect('/admin/list-category');
-
     }
 }

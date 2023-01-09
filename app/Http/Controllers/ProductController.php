@@ -6,11 +6,13 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Inventory;
-use App\Models\Product_Category;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Session;
+use App\Http\Requests\ProductRequest;
+
+
+
+
 
 
 class ProductController extends Controller
@@ -22,7 +24,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::all();
+        // dd(User::all()->toArray());
+        $product = Product::orderBy('created_at', 'DESC')->paginate(10);
+        // search
+        if ($key = request()->key){
+            $product = Product::orderBy('created_at', 'DESC')->where('name','like','%'.$key.'%')->paginate(10);
+        }
         return view('admin.product.list',compact('product'));
     }
 
@@ -43,53 +50,39 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        // img one to many
-        if($request->file('photos')){
-            $path = public_path('tmp/uploads');
-            if ( ! file_exists($path) ) {
-                mkdir($path, 0777, true);
-            }
-            $photos = [];
-            if ($request->hasfile('photos')) {
-                foreach ($request->file('photos') as $file) {
-                    $name = $file->getClientOriginalName();
-                    $file->move($path, $name);
-                    $photos[] = $name;
+        $cate = $request->validated();
+        try
+            {
+            // lưu product
+
+                // relationship
+                $products = Product::all();
+                $category = Category::findOrFail($request->category_id);
+                $products = $category->products()->create($request->all());
+                // xử lý images
+                if ($request->hasFile("photos")){
+                    $files = $request->file("photos");
+                    foreach ($files as $file) {
+                        $imageName=$file->getClientOriginalName();
+                        $request['product_id'] = $products->id;
+                        $request['link'] = $imageName;
+                        $file->move(\public_path('tmp/uploads'),$imageName);
+                        Image::create($request->all());
+                    }
+                }
+                $category = Category::all();
+                //Kiểm tra delete để trả về một thông báo
+                if ($category) {
+                    Session::flash('success', 'Create Successful !');
+                }else {
+                    Session::flash('error', 'Create Failed !');
                 }
             }
-        }
-        // lưu product
-            $inventories= Inventory::create([
-                'quantity' => $request->quantity,
-            ]);
-
-            // relationship
-
-
-            $category = Category::findOrFail($request->category_id);
-            $category =  $inventories->products()->create($request->all());
-            // duyệt từng ảnh và thực hiện lưu
-            foreach ($request->photos as $photo) {
-                Image::create([
-                    'product_id' => $category->id,
-                    'link' => $name
-                ]);
-            }
-
-
-            // $user = User::findOrFail($request->user_id);
-            // $test = $user->products()->create($request->all());
-
-
-            $category = Category::all();
-
-            //Kiểm tra delete để trả về một thông báo
-            if ($category) {
-                Session::flash('success', 'Create Successful !');
-            }else {
-                Session::flash('error', 'Create Failed !');
+        catch (Exception $e)
+            {
+                return $e->getMessage();
             }
         return view('admin.product.add', compact('category'));
 
@@ -103,7 +96,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = Product::findOrFail($id);
+        return view('admin.product.detail', compact('products'));
     }
 
     /**
@@ -114,7 +108,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Product::findOrFail($id);
+        $category = Category::all();
+        return view('admin.product.edit', compact('products','category'));
     }
 
     /**
@@ -137,6 +133,23 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try
+            {
+                $products = Product::findOrFail($id);
+                $products->delete();
+
+                //Kiểm tra delete để trả về một thông báo
+                if ($products) {
+                    Session::flash('success', 'Delete Successful !');
+                }else {
+                    Session::flash('error', 'Delete Failed !');
+                }
+            }
+        catch (Exception $e)
+            {
+                return $e->getMessage();
+            }
+
+        return redirect('/admin/list-product');
     }
 }

@@ -3,10 +3,10 @@ return [
     'welcome' => 'Chào mừng bạn đến với Website!',
     'category' => 'Danh Mục',
     'product' => 'Sản Phẩm',
-    'admin' => 'Quản trị viên',
+    'admin' => 'Quản Trị Viên',
     'description'=>'Mô tả',
     'price_old' => 'Giá gốc',
-    'price_new' => 'Giá cũ',
+    'price_new' => 'Giá Mới',
     'status' => 'Trạng thái',
     'list_product' => 'Danh Sách Sản Phẩm',
     'add_product' => 'Thêm Sản Phẩm',
@@ -30,6 +30,22 @@ return [
     'quantity' => 'Số lượng',
     'display' => 'Hiển thị',
     'hide' => 'Ẩn',
+    'profile' => 'Hồ Sơ',
+    'logout' => 'Đăng Xuất',
+    'search' => 'Tìm kiếm',
+    'dasboard'=>'Bảng Điều Khiển',
+    'list_order' => 'Đơn Đặt Hàng',
+    'avatar' => 'Ảnh Đại Diện',
+    'related_images' => 'Hình Ảnh Liên Quan',
+    'detail_product' => 'Chi Tiết Sản phẩm',
+    'detail' => 'Chi Tiết',
+    'created_at' => 'Ngày Tạo',
+    'updated_at' => 'Ngày Cập Nhập',
+    'note' => 'Lưu ý',
+    'note_message' => 'Vui lòng điền đầy đủ thông tin!',
+    'list_users' => 'Danh Sách Người Dùng',
+
+
 
 
 
