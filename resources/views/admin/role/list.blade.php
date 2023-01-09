@@ -15,7 +15,7 @@
     @endif
     <div class="form-group">
     <h2>Users Managenment</h2>
-    <a class="btn btn-primary" href="/admin/add-category">Create new user</a>
+    <a class="btn btn-primary" href="/admin/add-user">Create new user</a>
     </div>
 
     <p>Number of users: {{ count($users) }}</p>

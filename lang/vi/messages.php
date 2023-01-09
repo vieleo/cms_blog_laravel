@@ -1,10 +1,11 @@
 <?php
+
 return [
     'welcome' => 'Chào mừng bạn đến với Website!',
     'category' => 'Danh Mục',
     'product' => 'Sản Phẩm',
     'admin' => 'Quản Trị Viên',
-    'description'=>'Mô tả',
+    'description' => 'Mô tả',
     'price_old' => 'Giá gốc',
     'price_new' => 'Giá Mới',
     'status' => 'Trạng thái',
@@ -13,16 +14,16 @@ return [
     'action' => 'Hoạt động',
     'list_category' => 'Danh Sách Danh Mục',
     'add_category' => 'Thêm Danh Mục',
-    'Notificatin'  => 'Thông báo',
-    'create_category'=>'TẠO DANH MỤC SẢN PHẨM',
-    'create_product'=>'Tạo sản phẩm',
+    'Notificatin' => 'Thông báo',
+    'create_category' => 'TẠO DANH MỤC SẢN PHẨM',
+    'create_product' => 'Tạo sản phẩm',
     'update' => 'Cập nhập',
     'create' => 'Tạo',
     'name_category' => 'Tên Danh Mục',
     'name_product' => 'Tên Sản Phẩm',
     'edit' => 'Sửa',
     'delete' => 'Xoá',
-    'stt'=> 'STT',
+    'stt' => 'STT',
     'image' => 'Hình ảnh',
     'update_category' => 'CẬP NHẬP DANH MỤC',
     'update_product' => 'CẬP NHẬP SẢN PHẨM',
@@ -33,7 +34,7 @@ return [
     'profile' => 'Hồ Sơ',
     'logout' => 'Đăng Xuất',
     'search' => 'Tìm kiếm',
-    'dasboard'=>'Bảng Điều Khiển',
+    'dasboard' => 'Bảng Điều Khiển',
     'list_order' => 'Đơn Đặt Hàng',
     'avatar' => 'Ảnh Đại Diện',
     'related_images' => 'Hình Ảnh Liên Quan',
@@ -44,9 +45,5 @@ return [
     'note' => 'Lưu ý',
     'note_message' => 'Vui lòng điền đầy đủ thông tin!',
     'list_users' => 'Danh Sách Người Dùng',
-
-
-
-
 
 ];

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Product_Inventory extends Model
 {
     use HasFactory;
-    protected $fillable =[
-        'quantity'
+
+    protected $fillable = [
+        'quantity',
     ];
 }

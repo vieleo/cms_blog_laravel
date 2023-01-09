@@ -31,13 +31,15 @@ class StorePostRequest extends FormRequest
             'price_old' => 'required|alpha_num',
             'price_new' => 'required|alpha_num',
         ];
+
         return $rules;
     }
+
     public function messages()
     {
-    return [
-        'name.required' => 'Please enter your name',
-        'description.required' => 'Please enter a description',
-    ];
+        return [
+            'name.required' => 'Please enter your name',
+            'description.required' => 'Please enter a description',
+        ];
     }
 }

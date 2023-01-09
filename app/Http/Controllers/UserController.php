@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
 use Illuminate\Http\Request;
-use App\Models\User;
-
 
 class UserController extends Controller
 {
@@ -16,15 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::find(1);
-
-        $profile = new Profile();
-        $profile->address = 'Vĩnh Phúc';
-        $profile->birth_date = '16/02/2001';
-        $profile->gender = '1';
-        $profile->phone = '9429343852';
-
-        $user->phone()->save($profile);
+        return view('');
     }
 
     /**

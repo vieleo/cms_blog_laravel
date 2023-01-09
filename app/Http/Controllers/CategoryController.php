@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
+
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
-use App\Http\Requests\CategoryRequest;
-
-
 
 class CategoryController extends Controller
 {
@@ -20,7 +19,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = DB::table('categories')->paginate(10);
-        return view('admin.category.list',compact('categories'));
+
+        return view('admin.category.list', compact('categories'));
     }
 
     public function getModel()
@@ -28,7 +28,6 @@ class CategoryController extends Controller
         $data = Product::find(1)->images->toArray();
         dd($data);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -48,31 +47,27 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-
         $cate = $request->validated();
-        try
-            {
-                $cate = new Category;
+        try {
+            $cate = new Category;
+            if ($cate) {
+                $cate->name = $request->get('name');
+                $cate->description = $request->get('description');
+                $cate->save();
+                //Kiểm tra Insert để trả về một thông báo
                 if ($cate) {
-                    $cate->name = $request->get('name');
-                    $cate->description = $request->get('description');
-                    $cate->save();
-                    //Kiểm tra Insert để trả về một thông báo
-                    if ($cate) {
-                        Session::flash('success', 'Add Successful !');
-                    }else {
-                        Session::flash('error', 'Add Failed !');
-                    }
-                    return view('admin.category.add');
-                }else{
-                    return "Data note Found";
+                    Session::flash('success', 'Add Successful !');
+                } else {
+                    Session::flash('error', 'Add Failed !');
                 }
-            }
-        catch (Exception $e)
-            {
-                return $e->getMessage();
-            }
 
+                return view('admin.category.add');
+            } else {
+                return 'Data note Found';
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**
@@ -95,6 +90,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $categories = Category::findOrFail($id);
+
         return view('admin.category.edit', compact('categories'));
     }
 
@@ -107,25 +103,23 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try
-            {
-                $categories = Category::find($id);
-                $categories->name = $request->name;
-                $categories->description = $request->description;
-                $categories->save();
+        try {
+            $categories = Category::find($id);
+            $categories->name = $request->name;
+            $categories->description = $request->description;
+            $categories->save();
 
-                //Kiểm tra delete để trả về một thông báo
-                if ($categories) {
-                    Session::flash('success', 'Update Successful !');
-                }else {
-                    Session::flash('error', 'Update Failed !');
-                }
+            //Kiểm tra delete để trả về một thông báo
+            if ($categories) {
+                Session::flash('success', 'Update Successful !');
+            } else {
+                Session::flash('error', 'Update Failed !');
             }
-        catch (Exception $e)
-            {
-                return $e->getMessage();
-            }
-            return redirect('/admin/list-category');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+
+        return redirect('/admin/list-category');
     }
 
     /**
@@ -136,22 +130,20 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        try
-            {
-                $categories = Category::findOrFail($id);
-                $categories->delete();
+        try {
+            $categories = Category::findOrFail($id);
+            $categories->delete();
 
-                //Kiểm tra delete để trả về một thông báo
-                if ($categories) {
-                    Session::flash('success', 'Delete Successful !');
-                }else {
-                    Session::flash('error', 'Delete Failed !');
-                }
+            //Kiểm tra delete để trả về một thông báo
+            if ($categories) {
+                Session::flash('success', 'Delete Successful !');
+            } else {
+                Session::flash('error', 'Delete Failed !');
             }
-        catch (Exception $e)
-            {
-                return $e->getMessage();
-            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+
         return redirect('/admin/list-category');
     }
 }

@@ -82,7 +82,7 @@
             <br>
             <input type="file" class="form-control" name="photos[]" multiple />
             @foreach ($products->images as $img)
-                     <img class="myImages" id="myImg" src="{{ asset('tmp/uploads/'.$img->link) }}" class="card-img-top" alt="{{ $products->name }}" style="width:250px; height:200px">
+                     <img class="myImages" id="myImg" src="{{ asset('tmp/uploads/'.$img->link) }}" class="card-img-top" alt="{{ $products->name }}" style="width:200px; height:200px">
             @endforeach
           </div></br>
 

@@ -4,19 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Image;
-use App\Models\Category;
-use App\Models\Inventory;
-
 
 class Product extends Model
 {
     use HasFactory;
+
     protected $table = 'products';
+
     protected $primaryKey = 'id';
+
     protected $guarded = [];
 
-    protected $fillable =[
+    protected $fillable = [
         'name',
         'avatar',
         'price_old',
@@ -25,10 +24,8 @@ class Product extends Model
         'quantity',
         // 'user_id',
         'status',
-        'description'
+        'description',
     ];
-
-
 
     // one to many relationship
     public function images()
@@ -44,6 +41,6 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsTo(Category::class,'category_id','id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

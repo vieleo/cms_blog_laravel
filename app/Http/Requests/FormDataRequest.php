@@ -23,17 +23,15 @@ class FormDataRequest extends FormRequest
      */
     public function rules()
     {
-        $rule =  [
+        $rule = [
             'name' => [
                 'required',
                 'min:5',
             ],
             'description' => [
                 'required',
-            ]
+            ],
         ];
-
-
     }
 
     public function messages()
@@ -43,5 +41,4 @@ class FormDataRequest extends FormRequest
             'name.required' => 'Vui lòng điền mô tả',
         ];
     }
-
 }

@@ -1,10 +1,11 @@
 <?php
+
 return [
     'welcome' => 'Welcome to Website!',
     'category' => 'Category',
     'product' => 'Product',
     'admin' => 'Admin',
-    'description'=>'Description',
+    'description' => 'Description',
     'price_old' => 'Price Old',
     'price_new' => 'Price New',
     'status' => 'Status',
@@ -13,9 +14,9 @@ return [
     'action' => 'Action',
     'list_category' => 'List Category',
     'add_category' => 'Add Category',
-    'Notificatin'  => 'Notificatin',
-    'create_category'=>'Create Category',
-    'create_product'=>'Create Product',
+    'Notificatin' => 'Notificatin',
+    'create_category' => 'Create Category',
+    'create_product' => 'Create Product',
     'update' => 'Update',
     'create' => 'Create',
     'name_category' => 'Name Category',
@@ -33,7 +34,7 @@ return [
     'profile' => 'Profile',
     'logout' => 'Log Out',
     'search' => 'Search',
-    'dasboard'=>'Dasboard',
+    'dasboard' => 'Dasboard',
     'list_order' => 'List Order',
     'avatar' => 'Avatar',
     'related_images' => 'Related Images',
@@ -44,7 +45,5 @@ return [
     'note' => 'Note',
     'note_message' => 'Please fill in the information!',
     'list_users' => 'List Users',
-
-
 
 ];

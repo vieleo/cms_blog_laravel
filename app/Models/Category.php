@@ -4,18 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Product;
-
 
 class Category extends Model
 {
     use HasFactory;
+
     protected $table = 'categories';
+
     protected $primaryKey = 'id';
+
     protected $guarded = [];
-    protected $fillable =[
+
+    protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
 
     /**
@@ -29,6 +31,6 @@ class Category extends Model
     {
         // hasMany(RelatedModel, foreignKeyOnRelatedModel = category_id, localKey = id)
         // return $this->hasMany(Product::class, 'category_id');
-        return $this->hasMany(Product::class,'category_id','id');
+        return $this->hasMany(Product::class, 'category_id', 'id');
     }
 }

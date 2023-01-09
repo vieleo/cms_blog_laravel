@@ -27,13 +27,15 @@ class CategoryRequest extends FormRequest
             'name' => 'required|max:255',
             'description' => 'required',
         ];
+
         return $rules;
     }
+
     public function messages()
     {
-    return [
-        'name.required' => 'Please enter your name',
-        'description.required' => 'Please enter a description',
-    ];
+        return [
+            'name.required' => 'Please enter your name',
+            'description.required' => 'Please enter a description',
+        ];
     }
 }

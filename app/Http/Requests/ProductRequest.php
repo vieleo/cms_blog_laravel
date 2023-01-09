@@ -31,14 +31,16 @@ class ProductRequest extends FormRequest
             'price_old' => 'required|numeric|regex:/^\d{1,13}(\.\d{1,4})?$/',
             'price_new' => 'required|numeric|regex:/^\d{1,13}(\.\d{1,4})?$/',
         ];
+
         return $rules;
     }
+
     public function messages()
     {
-    return [
-        'name.required' => 'Please enter your name',
-        'quantity.numeric' => 'Yêu cầu nhập dữ liệu kiểu số',
-        'description.required' => 'Please enter a description',
-    ];
+        return [
+            'name.required' => 'Please enter your name',
+            'quantity.numeric' => 'Yêu cầu nhập dữ liệu kiểu số',
+            'description.required' => 'Please enter a description',
+        ];
     }
 }

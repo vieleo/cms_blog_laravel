@@ -6,6 +6,12 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Session;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class RoleController extends Controller
 {
@@ -25,9 +31,9 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        //
+        return view('admin.role.create');
     }
 
     /**
@@ -36,9 +42,39 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->profile()->create([
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'birthdaytime' => $request->birthdaytime,
+            'gender' => $request->gender,
+        ]);
+        $user->roles()->create([
+            'role' => 'User',
+        ]);
+        
+        //Kiểm tra Insert để trả về một thông báo
+        if ($user) {
+            Session::flash('success', 'Add Successful !');
+        } else {
+            Session::flash('error', 'Add Failed !');
+        }
+
+        return redirect('admin/list-user');
     }
 
     /**
@@ -83,9 +119,23 @@ class RoleController extends Controller
         try
             {
             $user = User::findOrFail($id);
+            $user->update($request->all());
+            $user->profile()->update([
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'gender' => $request->gender,
+                'birthdaytime' => $request->birthdaytime,
+
+            ]);
             $user->roles()->update([
                 'role' => $request->role,
             ]);
+            //Kiểm tra delete để trả về một thông báo
+            if ($user) {
+                Session::flash('success', 'Update Successful !');
+            } else {
+                Session::flash('error', 'Update Failed !');
+            }
             }
         catch (Exception $e)
                 {
