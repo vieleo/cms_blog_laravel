@@ -50,8 +50,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/edit-product/{id}', [ProductController::class, 'edit']);
     Route::post('/update-product/{id}', [ProductController::class, 'update']);
     Route::get('/delete-product/{id}', [ProductController::class, 'destroy']);
-    // Route::delete('/deletephoto/{id}', [ProductController::class, 'deletephoto']);
-
 
     // role
     Route::get('/list-user', [RoleController::class, 'index'])->name('index');
@@ -68,7 +66,6 @@ Route::get('lang/{locale}', function ($locale) {
         abort(404);
     }
     session()->put('locale', $locale);
-
     return redirect()->back();
 });
 
