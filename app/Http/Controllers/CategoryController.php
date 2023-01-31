@@ -7,7 +7,8 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
+use Illuminate\Support\Facades\Session;
+use Exception;
 
 class CategoryController extends Controller
 {
@@ -19,13 +20,12 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = DB::table('categories')->paginate(10);
-
         return view('admin.category.list', compact('categories'));
     }
 
     public function getModel()
     {
-        $data = Product::find(1)->images->toArray();
+        $data = Product::find(6)->images->toArray();
         dd($data);
     }
 

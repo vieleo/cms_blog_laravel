@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Product;
 use App\Models\Category;
-use Session;
+use Illuminate\Support\Facades\Session;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;

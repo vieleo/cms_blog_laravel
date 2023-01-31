@@ -5,6 +5,7 @@
 @extends('admin.layouts.layout')
 
 @section('content')
+
     <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
