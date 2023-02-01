@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
         $user->profile()->create([
             'phone' => $request->phone,
             'address' => $request->address,
-            'birthdaytime' => $request->birthdaytime,
+            // 'birthdaytime' => $request->birthdaytime,
             'gender' => $request->gender,
         ]);
         $user->roles()->create([
