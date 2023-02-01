@@ -17,10 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->text('avatar');
             $table->string('phone');
             $table->text('address');
-            // $table->string('birthdaytime');
             $table->integer('gender');
             $table->timestamps();
         });
