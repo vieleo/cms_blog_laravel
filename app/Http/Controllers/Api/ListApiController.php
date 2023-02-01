@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ListApiController extends Controller
@@ -44,5 +45,23 @@ class ListApiController extends Controller
         return response(['data'=>$images]);
     }
 
+    // image-product-dai-dien
+    public function images_avatar_products($id)
+    {
+        $images = Product::find($id)->images->first();
+        return response(['data'=>$images]);
+    }
+
+
+    // profile-user
+    public function profile_user()
+    {
+        $user = Auth::user();
+        Auth::user()->profile;
+        return response()->json([
+            'user' => $user,
+        ]);
+
+    }
 
 }

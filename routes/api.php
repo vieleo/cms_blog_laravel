@@ -34,8 +34,12 @@ Route::group(['prefix' => 'admin'], function () {
     // images thuoc Products //
     Route::get('/images-product/{id}', [ListApiController::class, 'images_products'])->name('images_products');
 
+    // images đại diện Products //
+    Route::get('/images_avatar_products/{id}', [ListApiController::class, 'images_avatar_products'])->name('images_avatar_products');
+
     // search
     Route::get('/search/{name}', [ListApiController::class, 'search'])->name('search');
+
 
 
 
@@ -47,6 +51,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/update-user/{id}', [RoleController::class, 'update']);
     Route::get('/delete-user/{id}', [RoleController::class, 'destroy']);
 });
+
+
 
 
 // Route::controller(AuthController::class)->group(function () {
@@ -70,7 +76,8 @@ Route::middleware('api')->prefix('/')->group(function (){
     Route::post('/login',[AuthController::class,'login']);
     Route::post('/logout',[AuthController::class,'logout']);
     Route::post('/register',[AuthController::class,'register']);
-
+    // profile-user
+    Route::get('/profile-user', [ListApiController::class, 'profile_user'])->name('profile_user');
     // Route::prefix('user')->group(function (){
     //    Route::get('/index',[CMS\UserController::class,'index'])->name('api.user.index');
     // });
