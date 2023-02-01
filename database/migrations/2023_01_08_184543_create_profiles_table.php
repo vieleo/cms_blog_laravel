@@ -20,7 +20,7 @@ return new class extends Migration
             // $table->text('avatar');
             $table->string('phone');
             $table->text('address');
-            $table->string('birthdaytime');
+            // $table->string('birthdaytime');
             $table->integer('gender');
             $table->timestamps();
         });

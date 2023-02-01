@@ -24,10 +24,10 @@
             <x-input-label for="address" :value="__('Address')" />
             <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus />
         </div>
-        <div class="mt-4">
+        {{-- <div class="mt-4">
             <x-input-label for="birthdaytime" :value="__('Birth date')" />
             <input type="datetime-local" id="birthdaytime" name="birthdaytime">
-        </div>
+        </div> --}}
         <div class="mt-4">
             <x-input-label for="gender" :value="__('Gender')" />
             <input type="radio" name="gender" value="1" checked>Nam

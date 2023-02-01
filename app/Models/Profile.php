@@ -13,7 +13,6 @@ class Profile extends Model
         'phone',
         'address',
         'gender',
-        'birthdaytime',
     ];
 
     public function user()

@@ -17,7 +17,7 @@
     <h2>{{ trans('messages.list_category') }}</h2>
     <a class="btn btn-primary" href="/admin/add-category">{{ trans('messages.add_category') }}</a>
     </div>
-    <p>Number of users: {{ count($categories) }}</p>
+    <p>Number of categories: {{ count($categories) }}</p>
 
     <table class="table table-bordered" id="table">
         <tr style="text-align: center;">
