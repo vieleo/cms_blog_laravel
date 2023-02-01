@@ -51,6 +51,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/update-product/{id}', [ProductController::class, 'update']);
     Route::get('/delete-product/{id}', [ProductController::class, 'destroy']);
 
+    // list cart
+    Route::get('/cart', [ProductController::class, 'index'])->name('index');
+
+
     // role
     Route::get('/list-user', [RoleController::class, 'index'])->name('index');
     Route::get('/add-user', [RoleController::class, 'create'])->name('create');

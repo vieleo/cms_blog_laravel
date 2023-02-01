@@ -75,6 +75,9 @@
                             <a href="/admin/list-product" class="dropdown-item">{{ trans('messages.list_product') }}</a>
                         </div>
                     </div>
+
+                    <a href="/admin/list-user" class="nav-item nav-link"><i class="fa fa-cart-plus"></i>Quản lý đơn hàng</a>
+
                     <a href="/admin/list-user" class="nav-item nav-link"><i class="fa fa-user"></i>  {{ trans('messages.list_users') }}</a>
                 </div>
             </nav>

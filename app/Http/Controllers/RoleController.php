@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Session;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Session;
+use Exception;
 
 class RoleController extends Controller
 {
@@ -66,7 +67,7 @@ class RoleController extends Controller
         $user->roles()->create([
             'role' => 'User',
         ]);
-        
+
         //Kiểm tra Insert để trả về một thông báo
         if ($user) {
             Session::flash('success', 'Add Successful !');

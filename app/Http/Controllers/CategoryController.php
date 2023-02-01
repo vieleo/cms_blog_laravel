@@ -23,11 +23,11 @@ class CategoryController extends Controller
         return view('admin.category.list', compact('categories'));
     }
 
-    public function getModel()
-    {
-        $data = Product::find(6)->images->toArray();
-        dd($data);
-    }
+    // public function getModel()
+    // {
+    //     $data = Product::find(6)->images->toArray();
+    //     dd($data);
+    // }
 
     /**
      * Show the form for creating a new resource.
