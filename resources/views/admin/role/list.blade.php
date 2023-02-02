@@ -26,22 +26,26 @@
             <th>User Name</th>
             <th>Email</th>
             <th>Roles</th>
-            <th width="280px">{{ trans('messages.action') }}</th>
+            @if (Auth::user()->role == 'admin')
+                <th width="280px">{{ trans('messages.action') }}</th>
+            @endif
+
         </tr>
-        {{-- @dd($users); --}}
         @foreach ($users as $items)
         <tr>
             <td>{{ $items->id }}</td>
             <td>{{ $items->name }}</td>
             <td>{{ $items->email }}</td>
             <td style="text-align:center">
-                <button class="btn btn-outline-warning">{{ $items->roles->role }}</button>
+                <button class="btn btn-outline-warning">{{ $items->role }}</button>
 
             </td>
-            <td style="text-align: center;">
-                <a class="btn btn-primary" href="/admin/edit-user/{{ $items->id}}">Sửa quyền</a>
-                <a class="btn btn-danger show_confirm" href="/admin/delete-user/{{ $items->id}}" onclick="return confirm('You Sure Want Delete?')">{{ trans('messages.delete') }}</a>
-            </td>
+            @if (Auth::user()->role == 'admin')
+                <td style="text-align: center;">
+                    <a class="btn btn-primary" href="/admin/edit-user/{{ $items->id}}">Edit</a>
+                    <a class="btn btn-danger show_confirm" href="/admin/delete-user/{{ $items->id}}" onclick="return confirm('You Sure Want Delete?')">{{ trans('messages.delete') }}</a>
+                </td>
+            @endif
         </tr>
         @endforeach
     </table>

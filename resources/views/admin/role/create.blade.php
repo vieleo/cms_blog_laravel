@@ -38,10 +38,6 @@
             <input type="text" class="form-control" name="address" value="">
         </div></br>
         <div class="form-group">
-            <label for="Birth Date">Birth Date</label></br> <label style="color: red">(*)</label>
-            <input type="datetime-local" class="form-control" id="birthdaytime" name="birthdaytime">
-        </div></br>
-        <div class="form-group">
             <label for="Gender">Gender</label></br> <label style="color: red">(*)</label>
             <input type="radio" name="gender" value="1" checked>Nam
             <input type="radio" name="gender" value="0">Nữ

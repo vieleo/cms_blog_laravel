@@ -56,17 +56,17 @@ class RoleController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'User',
         ]);
 
         $user->profile()->create([
             'phone' => $request->phone,
             'address' => $request->address,
-            'birthdaytime' => $request->birthdaytime,
             'gender' => $request->gender,
         ]);
-        $user->roles()->create([
-            'role' => 'User',
-        ]);
+        // $user->roles()->create([
+        //     'role' => 'User',
+        // ]);
 
         //Kiểm tra Insert để trả về một thông báo
         if ($user) {
@@ -125,12 +125,12 @@ class RoleController extends Controller
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'gender' => $request->gender,
-                'birthdaytime' => $request->birthdaytime,
+                // 'role' => $request->role,
 
             ]);
-            $user->roles()->update([
-                'role' => $request->role,
-            ]);
+            // $user->roles()->update([
+            //     'role' => $request->role,
+            // ]);
             //Kiểm tra delete để trả về một thông báo
             if ($user) {
                 Session::flash('success', 'Update Successful !');
