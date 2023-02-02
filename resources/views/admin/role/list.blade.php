@@ -31,7 +31,6 @@
             @endif
 
         </tr>
-        {{-- @dd($users); --}}
         @foreach ($users as $items)
         <tr>
             <td>{{ $items->id }}</td>
@@ -43,7 +42,7 @@
             </td>
             @if (Auth::user()->role == 'admin')
                 <td style="text-align: center;">
-                    <a class="btn btn-primary" href="/admin/edit-user/{{ $items->id}}">Sửa quyền</a>
+                    <a class="btn btn-primary" href="/admin/edit-user/{{ $items->id}}">Edit</a>
                     <a class="btn btn-danger show_confirm" href="/admin/delete-user/{{ $items->id}}" onclick="return confirm('You Sure Want Delete?')">{{ trans('messages.delete') }}</a>
                 </td>
             @endif
