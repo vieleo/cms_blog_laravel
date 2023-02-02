@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Exception;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
@@ -131,19 +132,23 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $categories = Category::findOrFail($id);
-            $categories->delete();
-
-            //Kiểm tra delete để trả về một thông báo
-            if ($categories) {
-                Session::flash('success', 'Delete Successful !');
-            } else {
-                Session::flash('error', 'Delete Failed !');
-            }
-        } catch (Exception $e) {
-            return $e->getMessage();
+            $products = Category::find($id)->products->count();
+            if($products > 0){
+                    return Redirect::to('/admin/list-category')
+                            ->with('message', 'Something went wrong');
+                }
+                else{
+                    $category= Category::findOrFail($id);
+                    $category->delete();
+                    if ($category) {
+                        Session::flash('success', 'Delete Successful !');
+                    } else {
+                        Session::flash('error', 'Delete Failed !');
+                    }
+                    return Redirect::to('/admin/list-category');
+                }
+            } catch (Exception $e) {
+                return $e->getMessage();
         }
-
-        return redirect('/admin/list-category');
     }
 }

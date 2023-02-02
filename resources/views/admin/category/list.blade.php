@@ -13,6 +13,16 @@
             <strong>{{ Session::get('error') }}</strong>
         </div>
     @endif
+
+    @if (\Session::has('message'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('message') !!}</li>
+        </ul>
+    </div>
+    @endif
+
+
     <div class="form-group">
     <h2>{{ trans('messages.list_category') }}</h2>
     <a class="btn btn-primary" href="/admin/add-category">{{ trans('messages.add_category') }}</a>
