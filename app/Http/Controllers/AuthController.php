@@ -63,10 +63,6 @@ class AuthController extends Controller
             'gender' => $request->gender,
         ]);
 
-        // $user->roles()->create([
-        //     'role' => 'User',
-        // ]);
-
         $token = Auth::login($user);
         return response()->json([
             'status' => 'success',

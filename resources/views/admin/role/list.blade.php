@@ -38,7 +38,6 @@
             <td>{{ $items->email }}</td>
             <td style="text-align:center">
                 <button class="btn btn-outline-warning">{{ $items->role }}</button>
-
             </td>
             @if (Auth::user()->role == 'admin')
                 <td style="text-align: center;">
