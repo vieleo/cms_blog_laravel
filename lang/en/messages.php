@@ -45,5 +45,6 @@ return [
     'note' => 'Note',
     'note_message' => 'Please fill in the information!',
     'list_users' => 'List Users',
+    'order_management'=>'Order Management',
 
 ];

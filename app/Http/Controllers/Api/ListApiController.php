@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -56,12 +57,35 @@ class ListApiController extends Controller
     // profile-user
     public function profile_user()
     {
-        $user = Auth::user();
-        Auth::user()->profile;
+        $profile = User::find(auth('api')->user()->id)->profile;
+        $user = $profile;
         return response()->json([
-            'user' => $user,
+            'status' => 'success',
+            'profile' => $user,
+            'user' => Auth::user()
         ]);
+    }
 
+    // update-profile
+    public function update_profile(Request $request)
+    {
+        $user = User::findOrFail(auth('api')->user()->id);
+        $user->profile()->updateOrCreate(
+            ['user_id' => auth('api')->user()->id],
+            [
+                'phone' => $request->phone,
+                'gender' => $request->gender,
+                'address' => $request->address,
+            ]
+        );
+        $profile = User::find(auth('api')->user()->id)->profile;
+        $user['profile'] = $profile;
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully edit profile',
+            'user' => $user,
+        //    'profile' =>$profile
+        ]);
     }
 
 }

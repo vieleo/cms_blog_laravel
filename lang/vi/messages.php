@@ -45,5 +45,7 @@ return [
     'note' => 'Lưu ý',
     'note_message' => 'Vui lòng điền đầy đủ thông tin!',
     'list_users' => 'Danh Sách Người Dùng',
+    'order_management'=>'Quản lý đơn hàng',
+
 
 ];

@@ -43,6 +43,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 
+
+
     // role
     Route::get('/list-user', [RoleController::class, 'index'])->name('index');
     Route::get('/add-user', [RoleController::class, 'create'])->name('create');
@@ -73,11 +75,14 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 Route::middleware('api')->prefix('/')->group(function (){
+    Route::auth();
     Route::post('/login',[AuthController::class,'login']);
     Route::post('/logout',[AuthController::class,'logout']);
     Route::post('/register',[AuthController::class,'register']);
     // profile-user
     Route::get('/profile-user', [ListApiController::class, 'profile_user'])->name('profile_user');
+    // update-profile-user
+    Route::put('/update-profile', [ListApiController::class, 'update_profile'])->name('update_profile');
     // Route::prefix('user')->group(function (){
     //    Route::get('/index',[CMS\UserController::class,'index'])->name('api.user.index');
     // });

@@ -56,12 +56,12 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // $user->profile()->create([
-        //     'phone' => $request->phone,
-        //     'address' => $request->address,
-        //     'birthdaytime' => $request->birthdaytime,
-        //     'gender' => $request->gender,
-        // ]);
+        $user->profile()->create([
+            'phone' => $request->phone,
+            'address' => $request->address,
+            // 'birthdaytime' => $request->birthdaytime,
+            'gender' => $request->gender,
+        ]);
 
         $user->roles()->create([
             'role' => 'User',
