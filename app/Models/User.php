@@ -29,6 +29,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'role'
 
     ];
 
@@ -67,10 +68,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Profile::class, 'user_id', 'id');
     }
 
-    public function roles()
-    {
-        return $this->hasOne(Role::class, 'user_id', 'id');
-    }
+    // public function roles()
+    // {
+    //     return $this->hasOne(Role::class, 'user_id', 'id');
+    // }
 
 
 
