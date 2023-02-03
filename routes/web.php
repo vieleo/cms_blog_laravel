@@ -20,10 +20,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/role-user', function () {
+    return view('Role_User');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','AdminRole'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -62,7 +65,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/edit-user/{id}', [RoleController::class, 'edit']);
     Route::post('/update-user/{id}', [RoleController::class, 'update']);
     Route::get('/delete-user/{id}', [RoleController::class, 'destroy']);
-});
+})->middleware(['auth', 'verified','AdminRole']);
 
 // multiple lang
 Route::get('lang/{locale}', function ($locale) {
