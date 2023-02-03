@@ -56,7 +56,7 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">{{ Auth::user()->name }}</h6>
-                        <span>{{ trans('messages.admin') }}</span>
+                        <span>{{ Auth::user()->role }}</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -194,8 +194,8 @@
                                                 onclick="event.preventDefault();
                                                             this.closest('form').submit();">
                                             {{ __('messages.logout') }}
-                                        </x-dropdown-link>
-                                    </form>
+                            </x-dropdown-link>
+                            </form>
                         </div>
                     </div>
 

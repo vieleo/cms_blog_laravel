@@ -49,17 +49,16 @@ class RegisteredUserController extends Controller
         $user->profile()->create([
             'phone' => $request->phone,
             'address' => $request->address,
-            // 'birthdaytime' => $request->birthdaytime,
             'gender' => $request->gender,
         ]);
-        $user->roles()->create([
-            'role' => 'User',
-        ]);
+
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('login');
+        // return redirect(RouteServiceProvider::HOME);
+
     }
 }

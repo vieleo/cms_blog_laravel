@@ -56,7 +56,6 @@ class RoleController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'User',
         ]);
 
         $user->profile()->create([
@@ -64,9 +63,7 @@ class RoleController extends Controller
             'address' => $request->address,
             'gender' => $request->gender,
         ]);
-        // $user->roles()->create([
-        //     'role' => 'User',
-        // ]);
+
 
         //Kiểm tra Insert để trả về một thông báo
         if ($user) {
