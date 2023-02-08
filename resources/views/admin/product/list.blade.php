@@ -6,7 +6,7 @@
     <h2>{{ trans('messages.list_product') }}</h2>
     <a class="btn btn-primary" href="/admin/add-product">{{ trans('messages.add_product') }}</a>
     </div>
-    <p>Number of users: {{ count($product) }}</p>
+    <p>Number of product: {{ count($product) }}</p>
     <table class="table table-bordered" id="example">
         <thead>
             <tr style="text-align: center;">

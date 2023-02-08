@@ -17,9 +17,6 @@
     <h2>Users Managenment</h2>
     <a class="btn btn-primary" href="/admin/add-user">Create new user</a>
     </div>
-
-    <p>Number of users: {{ count($users) }}</p>
-
     <table class="table table-bordered" id="table">
         <tr style="text-align: center;">
             <th>ID</th>

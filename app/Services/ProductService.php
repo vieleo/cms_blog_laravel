@@ -15,6 +15,7 @@ class ProductService
 {
     public function storeProduct($request)
     {
+        $server_storage = 'http://172.16.21.143/';
         $cate = $request->validated();
         // relationship
         $products = Product::all();
@@ -26,7 +27,7 @@ class ProductService
             foreach ($files as $file) {
                 $imageName = $file->getClientOriginalName();
                 $request['product_id'] = $products->id;
-                $request['link'] = $imageName;
+                $request['link'] =  $server_storage . 'tmp/uploads/'. $imageName;
                 $file->move(\public_path('tmp/uploads'), $imageName);
                 Image::create($request->all());
             }
@@ -40,6 +41,7 @@ class ProductService
 
     public function updateProduct(Request $request, $id)
     {
+        $server_storage = 'http://172.16.21.143/';
         $products = Product::findOrFail($id);
         $products->fill($request->all());
         // xử lý images
@@ -49,7 +51,7 @@ class ProductService
             foreach ($files as $file) {
                 $imageName = $file->getClientOriginalName();
                 $request['product_id'] = $products->id;
-                $request['link'] = $imageName;
+                $request['link'] = $server_storage . 'tmp/uploads/'. $imageName;
                 $file->move(\public_path('tmp/uploads'), $imageName);
                 Image::create($request->all());
             }

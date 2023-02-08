@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\ListApiController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Api\OrderController;
+
 
 
 /*
@@ -31,6 +33,9 @@ Route::group(['prefix' => 'admin'], function () {
     // Products thuoc categories //
     Route::get('/list-product/{id}', [ListApiController::class, 'categories_products'])->name('categories_products');
 
+    // Products all //
+    Route::get('/all-product', [ListApiController::class, 'all_products'])->name('all_products');
+
     // images thuoc Products //
     Route::get('/images-product/{id}', [ListApiController::class, 'images_products'])->name('images_products');
 
@@ -39,10 +44,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     // search
     Route::get('/search/{name}', [ListApiController::class, 'search'])->name('search');
-
-
-
-
 
 
     // role
@@ -54,24 +55,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/delete-user/{id}', [RoleController::class, 'destroy']);
 });
 
-
-
-
-// Route::controller(AuthController::class)->group(function () {
-//     Route::post('login', 'login');
-//     Route::post('register', 'register');
-//     Route::post('logout', 'logout');
-//     Route::post('refresh', 'refresh');
-
-// });
-
-// Route::controller(TodoController::class)->group(function () {
-//     Route::get('todos', 'index');
-//     Route::post('todo', 'store');
-//     Route::get('todo/{id}', 'show');
-//     Route::put('todo/{id}', 'update');
-//     Route::delete('todo/{id}', 'destroy');
-// });
+Route::middleware('api')->prefix('order')->group(function () {
+    Route::post('/',[OrderController::class,'orderProduct']);
+});
 
 
 Route::middleware('api')->prefix('/')->group(function (){
@@ -83,9 +69,7 @@ Route::middleware('api')->prefix('/')->group(function (){
     Route::get('/profile-user', [ListApiController::class, 'profile_user'])->name('profile_user');
     // update-profile-user
     Route::put('/update-profile', [ListApiController::class, 'update_profile'])->name('update_profile');
-    // Route::prefix('user')->group(function (){
-    //    Route::get('/index',[CMS\UserController::class,'index'])->name('api.user.index');
-    // });
+
 
 });
 
