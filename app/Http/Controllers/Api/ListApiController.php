@@ -35,8 +35,18 @@ class ListApiController extends Controller
     // api list-product-thuộc-category
     public function categories_products($id)
     {
-        $categories = Category::find($id)->products;
-         return response(['data'=>$categories]);
+        $categories = Category::find($id)->products->pluck('id');
+        $products = Product::with('images')->whereIn('id',$categories)->paginate(10);
+         return response(['data'=>$products]);
+    }
+
+    // api all-products
+    public function all_products()
+    {
+        // $product = Product::orderBy('created_at', 'DESC')->paginate(10);
+        // return response(['data'=>$product]);
+        $product = Product::with(['categories', 'images'])->paginate(10);
+         return response($product);
     }
 
     // api list-images-thuộc-products
@@ -62,7 +72,7 @@ class ListApiController extends Controller
         return response()->json([
             'status' => 'success',
             'profile' => $user,
-            'user' => Auth::user()
+            'user' => auth('api')->user()
         ]);
     }
 

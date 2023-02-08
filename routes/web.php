@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,7 +56,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/delete-product/{id}', [ProductController::class, 'destroy']);
 
     // list cart
-    Route::get('/cart', [ProductController::class, 'index'])->name('index');
+    Route::get('/cart', [OrderController::class, 'index'])->name('index');
+    Route::get('/show-detail-cart/{id}', [OrderController::class, 'show'])->name('show');
 
 
     // role

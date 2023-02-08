@@ -1,11 +1,8 @@
-{{-- <x-app-layout>
-    @include('admin.layouts.layout');
-</x-app-layout> --}}
-
 @extends('admin.layouts.layout')
 
 @section('content')
 
+{{-- <p>Number of users: {{ count($users) }}</p> --}}
     <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
