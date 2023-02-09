@@ -58,6 +58,8 @@ Route::group(['prefix' => 'admin'], function () {
     // list cart
     Route::get('/cart', [OrderController::class, 'index'])->name('index');
     Route::get('/show-detail-cart/{id}', [OrderController::class, 'show'])->name('show');
+    Route::post('/update-cart/{id}', [OrderController::class, 'update'])->name('update');
+
 
 
     // role

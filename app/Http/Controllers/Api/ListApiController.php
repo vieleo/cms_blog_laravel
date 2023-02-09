@@ -45,7 +45,10 @@ class ListApiController extends Controller
     {
         // $product = Product::orderBy('created_at', 'DESC')->paginate(10);
         // return response(['data'=>$product]);
-        $product = Product::with(['categories', 'images'])->paginate(10);
+        $product = Product::with(['categories', 'images'])->paginate(8);
+        // if ($key = request()->key) {
+        //     $product = Product::orderBy('created_at', 'DESC')->where('name', 'like', '%'.$key.'%')->paginate(10);
+        // }
          return response($product);
     }
 

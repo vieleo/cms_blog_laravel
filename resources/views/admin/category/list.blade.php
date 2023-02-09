@@ -42,8 +42,8 @@
             <td>{{ $category->name }}</td>
             <td>{!! $category->description !!}</td>
             <td style="text-align: center;">
-                <a class="btn btn-primary" href="/admin/edit-category/{{ $category->id}}">{{ trans('messages.edit') }}</a>
-                <a class="btn btn-danger show_confirm" href="/admin/delete-category/{{ $category->id}}" onclick="return confirm('You Sure Want Delete?')">{{ trans('messages.delete') }}</a>
+                <a class="btn btn-primary" href="/admin/edit-category/{{ $category->id}}"><i class="fa fa-pen"></i></a>
+                <a class="btn btn-danger show_confirm" href="/admin/delete-category/{{ $category->id}}" onclick="return confirm('You Sure Want Delete?')"><i class="fa fa-trash"></i></a>
             </td>
         </tr>
         @endforeach

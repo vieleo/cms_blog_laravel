@@ -13,15 +13,17 @@ class Order extends Model
         'id',
         'user_id',
         'payment_method',
-        'status'
+        'status',
+        'subtotal'
+
     ];
 
     public function user()
     {
-        return $this->hasOne(User::class,'id','user_id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
 
-    public function oderItem()
+    public function orderItem()
     {
         return $this->hasMany(OrderItem::class, 'order_id', 'id');
     }

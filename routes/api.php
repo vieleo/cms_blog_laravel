@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/images_avatar_products/{id}', [ListApiController::class, 'images_avatar_products'])->name('images_avatar_products');
 
     // search
-    Route::get('/search/{name}', [ListApiController::class, 'search'])->name('search');
+    Route::get('/all-product/{name}', [ListApiController::class, 'search'])->name('search');
 
 
     // role
@@ -58,6 +58,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::middleware('api')->prefix('order')->group(function () {
     Route::post('/',[OrderController::class,'orderProduct']);
 });
+Route::post('/order_',[OrderController::class,'orderProduct']);
 
 
 Route::middleware('api')->prefix('/')->group(function (){
