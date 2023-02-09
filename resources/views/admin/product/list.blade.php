@@ -24,9 +24,9 @@
                 <td>{{ $items->name }}</td>
                 <td>{{ $items->categories->name }}</td>
                 <td  style="text-align: center;">
-                    <a class="btn btn-warning" href="/admin/show-product/{{ $items->id}}">{{ trans('messages.detail') }}</a>
-                    <a class="btn btn-primary" href="/admin/edit-product/{{ $items->id}}">{{ trans('messages.edit') }}</a>
-                    <a class="btn btn-danger show_confirm" href="/admin/delete-product/{{ $items->id}}" onclick="return confirm('You Sure Want Delete?')">{{ trans('messages.delete') }}</a>
+                    <a class="btn btn-warning" href="/admin/show-product/{{ $items->id}}"><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-primary" href="/admin/edit-product/{{ $items->id}}"><i class="fa fa-pen"></i></a>
+                    <a class="btn btn-danger show_confirm" href="/admin/delete-product/{{ $items->id}}" onclick="return confirm('You Sure Want Delete?')"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
             @endforeach

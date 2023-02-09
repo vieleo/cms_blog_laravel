@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Services\ProductService;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Exception;

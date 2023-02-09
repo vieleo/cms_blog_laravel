@@ -52,11 +52,6 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-
-
-
-
-
     // one to many relationship
     public function products()
     {
@@ -66,6 +61,11 @@ class User extends Authenticatable implements JWTSubject
     public function profile()
     {
         return $this->hasOne(Profile::class, 'user_id', 'id');
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'user_id', 'id');
     }
 
     // public function roles()

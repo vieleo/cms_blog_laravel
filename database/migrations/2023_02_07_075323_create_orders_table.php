@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
-            $table->string('status')->default('awaiting_payment');
+            $table->string('status')->default('1');
             $table->string('payment_method')->default('cash_on_delivery');
-            $table->decimal('subtotal');
+            $table->string('subtotal');
             $table->timestamps();
         });
     }

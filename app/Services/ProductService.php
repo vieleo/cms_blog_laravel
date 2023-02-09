@@ -6,8 +6,12 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use App\Models\Image;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
 
 
 
@@ -61,19 +65,27 @@ class ProductService
 
     public function deleteProduct($id)
     {
-            $products = Product::findOrFail($id);
-            $images = Image::where("product_id",$products->id)->get();
-            foreach($images as $image){
-                if (File::exists("tmp/uploads/". $image->photo)){
-                    File::delete("tmp/uploads/". $image->photo);
-                }
+        $products = Product::find($id)->orderDetailWithProduct->count();
+            // dd($products);
+            if( $products >0 ){
+                return Redirect::to('/admin/list-product')
+                        ->with('message', 'Something went wrong');
             }
-            $products->delete();
-            //Kiểm tra delete để trả về một thông báo
-            if ($products) {
-                Session::flash('success', 'Delete Successful !');
-            } else {
-                Session::flash('error', 'Delete Failed !');
+            else{
+                $products = Product::findOrFail($id);
+                $images = Image::where("product_id",$products->id)->get();
+                foreach($images as $image){
+                    if (File::exists("tmp/uploads/". $image->photo)){
+                        File::delete("tmp/uploads/". $image->photo);
+                    }
+                }
+                $products->delete();
+                //Kiểm tra delete để trả về một thông báo
+                if ($products) {
+                    Session::flash('success', 'Delete Successful !');
+                } else {
+                    Session::flash('error', 'Delete Failed !');
+                }
             }
     }
 }

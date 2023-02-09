@@ -39,7 +39,7 @@
             <th>{{ trans('messages.related_images') }}</th>
             <td>
                 @foreach ($products->images as $img)
-                     <img class="myImages" id="myImg" src="{{ asset('tmp/uploads/'.$img->link) }}" class="card-img-top" alt="{{ $products->name }}" style="width:250px; height:200px">
+                     <img class="myImages" id="myImg" src="{{ asset($img->link) }}" class="card-img-top" alt="{{ $products->name }}" style="width:250px; height:200px">
                 @endforeach
             </td>
         </tr>
