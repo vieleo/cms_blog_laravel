@@ -48,4 +48,38 @@ class Product extends Model
     {
         return $this->hasMany(OrderItem::class, 'product_id', 'id');
     }
+
+
+
+    public function scopeFilter($products)
+    {
+        if (request('search')) {
+            $products->where('name', 'LIKE', '%'.request('search').'%');
+        }
+        if (request('price_from')) {
+            $products->where('price_new', '>=', request('price_from'))
+                ->where('price_new', '<=', request('price_to'))->orderBy('price_new', 'asc');
+        }
+        if (request('time') == 'newest') {
+            $products->orderBy('created_at', 'desc');
+        }
+        if (request('time') == 'oldest') {
+            $products->orderBy('created_at', 'asc');
+        }
+        if (request('sort') == 'za') {
+            $products->orderBy('name', 'desc');
+        }
+        if (request('sort') == 'az') {
+            $products->orderBy('name', 'asc');
+        }
+        if (request('price') == 'desc') {
+            $products->orderBy('price_new', 'desc');
+        }
+        if (request('price') == 'asc') {
+            $products->orderBy('price', 'asc');
+        }
+
+        return $products;
+
+    }
 }

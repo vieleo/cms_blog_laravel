@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Api\ListApiController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Api\OrderController;
 
@@ -28,22 +30,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // admin
 Route::group(['prefix' => 'admin'], function () {
     // Categories //
-    Route::get('/list-category', [ListApiController::class, 'categories'])->name('categories');
+    Route::get('/list-category', [CategoryController::class, 'categories'])->name('categories');
 
     // Products thuoc categories //
-    Route::get('/list-product/{id}', [ListApiController::class, 'categories_products'])->name('categories_products');
+    Route::get('/list-product/{id}', [ProductController::class, 'categories_products'])->name('categories_products');
 
     // Products all //
-    Route::get('/all-product', [ListApiController::class, 'all_products'])->name('all_products');
+    Route::get('/all-product', [ProductController::class, 'all_products'])->name('all_products');
 
     // images thuoc Products //
-    Route::get('/images-product/{id}', [ListApiController::class, 'images_products'])->name('images_products');
+    Route::get('/images-product/{id}', [ProductController::class, 'images_products'])->name('images_products');
 
     // images đại diện Products //
-    Route::get('/images_avatar_products/{id}', [ListApiController::class, 'images_avatar_products'])->name('images_avatar_products');
+    Route::get('/images_avatar_products/{id}', [ProductController::class, 'images_avatar_products'])->name('images_avatar_products');
 
     // search
-    Route::get('/all-product/{name}', [ListApiController::class, 'search'])->name('search');
+    Route::get('/all-product', [ProductController::class, 'search'])->name('search');
 
 
     // role
@@ -67,9 +69,9 @@ Route::middleware('api')->prefix('/')->group(function (){
     Route::post('/logout',[AuthController::class,'logout']);
     Route::post('/register',[AuthController::class,'register']);
     // profile-user
-    Route::get('/profile-user', [ListApiController::class, 'profile_user'])->name('profile_user');
+    Route::get('/profile-user', [UserController::class, 'profile_user'])->name('profile_user');
     // update-profile-user
-    Route::put('/update-profile', [ListApiController::class, 'update_profile'])->name('update_profile');
+    Route::put('/update-profile', [UserController::class, 'update_profile'])->name('update_profile');
 
 
 });

@@ -1,6 +1,27 @@
 @extends('admin.layouts.layout')
 
 @section('content')
+    @if ( Session::has('success') )
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <strong>{{ Session::get('success') }}</strong>
+        </div>
+    @endif
+
+    <?php //Hiển thị thông báo lỗi?>
+    @if ( Session::has('error') )
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <strong>{{ Session::get('error') }}</strong>
+        </div>
+    @endif
+
+    @if (\Session::has('message'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('message') !!}</li>
+        </ul>
+    </div>
+    @endif
+
 
     <div class="form-group">
     <h2>{{ trans('messages.list_product') }}</h2>

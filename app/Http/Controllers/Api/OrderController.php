@@ -18,7 +18,8 @@ class OrderController extends Controller
      */
     public function orderProduct(Request $request)
     {
-        $user_id = auth('api')->user()->id;
+        // $user_id = auth('api')->user()->id;
+        $user_id = $request['user_id'];
         $payment_method = $request['payment_method'];
         $subtotal = $request['subtotal'];
         $order = new Order();

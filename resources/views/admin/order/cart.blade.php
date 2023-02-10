@@ -3,18 +3,19 @@
 @section('content')
 
     <div class="form-group">
-    <h2>Danh sách đơn hàng</h2>
+    <h2>{{ trans('messages.list_order') }}</h2>
     </div>
-    <p>Number of order: {{ count($order) }}</p>
+    <p>Total Orders: {{ count($order) }}</p>
     <table class="table table-bordered" id="example">
         <thead>
             <tr style="text-align: center;">
                 <th>{{ trans('messages.stt') }}</th>
-                <th>Khách Hàng</th>
-                <th>Phương Thứ Thanh Toán</th>
-                <th>Ngày Đặt Hàng</th>
-                <th>Tổng Tiền</th>
-                <th>Tình trạng đơn hàng</th>
+                <th>{{ trans('messages.user_name') }}</th>
+                <th>{{ trans('messages.payment_method') }}</th>
+                <th>{{ trans('messages.status_payment_method') }}</th>
+                <th>{{ trans('messages.created_at') }}</th>
+                <th>{{ trans('messages.subtotal') }}</th>
+                <th>{{ trans('messages.status') }}</th>
                 <th width="280px">{{ trans('messages.action') }}</th>
             </tr>
         </thead>
@@ -26,29 +27,30 @@
                     <td>{{ $orders->user->name }}</td>
 
                     @if ($orders->payment_method == 1)
-                        <td>Trả tiền mặt</td>
+                        <td>{{ trans('messages.cod') }}</td>
                     @elseif ($orders->payment_method == 0)
-                        <td>Chuyển khoản ngân hàng</td>
+                        <td>{{ trans('messages.bank_transfer') }}</td>
                     @endif
+                    <td>{{ trans('messages.Paid') }}</td>
                     <td>{{ $orders->created_at }}</td>
                     <td>{{ number_format($orders->subtotal,0,'.','.') }} VNĐ</td>
                     <td>
                         @if ($orders->status == 1)
-                             <a class="btn btn-warning" style="border-radius: 100%;">Đơn hàng mới</a>
+                             <a class="btn btn-warning" style="border-radius: 100%;">{{ trans('messages.new_order') }}</a>
                         @elseif ($orders->status == 2)
-                             <a class="btn btn-success" style="border-radius: 100%;">Đang giao</a>
+                             <a class="btn btn-success" style="border-radius: 100%;">{{ trans('messages.delivering') }}</a>
                         @elseif ($orders->status == 3)
-                             <a class="btn btn-danger" style="border-radius: 100%;">Đã giao</a>
+                             <a class="btn btn-danger" style="border-radius: 100%;">{{ trans('messages.delivered') }}</a>
                         @endif
                     </td>
                     <td  style="text-align: center;">
                         @if ($orders->status == 1)
 
-                            <a class="btn btn-warning" href="">Chờ xử lý</a>
+                            <a class="btn btn-warning" href="">{{ trans('messages.waiting_for_progressing') }}</a>
 
                         @elseif ($orders->status == 2 || $orders->status == 3 )
 
-                            <a class="btn btn-danger" href="">Đã xử lý</a>
+                            <a class="btn btn-danger" href="">{{ trans('messages.successful_processing') }}</a>
 
                         @endif
 

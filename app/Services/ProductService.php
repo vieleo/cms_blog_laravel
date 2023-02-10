@@ -66,7 +66,6 @@ class ProductService
     public function deleteProduct($id)
     {
         $products = Product::find($id)->orderDetailWithProduct->count();
-            // dd($products);
             if( $products >0 ){
                 return Redirect::to('/admin/list-product')
                         ->with('message', 'Something went wrong');

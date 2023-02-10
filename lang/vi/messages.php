@@ -46,6 +46,47 @@ return [
     'note_message' => 'Vui lòng điền đầy đủ thông tin!',
     'list_users' => 'Danh Sách Người Dùng',
     'order_management'=>'Quản lý đơn hàng',
+    'user_name' => 'Tên tài khoản ',
+    'role' => 'Vai trò',
+    'create_new_user' => 'Thêm người dùng mới',
+    'user_manager' => 'Quản lý người dùng',
+    'payment_method'=>'Phương thức thanh toán',
+    'subtotal' => 'Tổng tiền',
+    'cod'=> 'Trả tiền mặt',
+    'bank_transfer'=>'Chuyển khoản ngân hàng',
+    'new_order'=>'Đơn hàng mới',
+    'delivering' => 'Đang giao',
+    'delivered' => 'Đã giao',
+    'waiting_for_progressing' => 'Chờ xử lý',
+    'successful_processing' => 'Xử lý thành công',
+    'total orders'=>'Tổng Số Đơn Hàng',
+    'gender'=>'Giới tính',
+    'male'=>'Nam',
+    'female' =>'Nữ',
+    'confirm_password' =>'Nhập lại mật khẩu',
+    'phone'=>'Số điện thoại',
+    'address'=>'Địa chỉ',
+    'name_user'=>'Tên người dùng',
+    'email'=>'Email',
+    'password'=>'Mật khẩu',
+    'order_details'=>'Chi tiết đơn hàng',
+    'SHIPPING_INFORMATION'=>'THÔNG TIN VẬN CHUYỂN HÀNG',
+    'customer_name'=>'Tên khách hàng',
+    'order_date' => 'Ngày đặt hàng',
+    'LIST_DETAILS_OF_BILLINGS' => 'DANH SÁCH CHI TIẾT HÓA ĐƠN',
+    'invoice_code' => 'Mã hoá đơn',
+    'status_payment_method' => 'Trạng thái thanh toán',
+    'Paid'=>'Đã thanh toán',
+
+
+
+
+
+
+
+
+
+
 
 
 ];
