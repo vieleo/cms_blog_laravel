@@ -45,7 +45,8 @@ class ProductService
 
     public function updateProduct(Request $request, $id)
     {
-        $server_storage = 'http://172.16.21.143/';
+        // $server_storage = 'http://172.16.21.143/';
+        $server_storage = 'http://viet.fresher.ameladev.click/';
         $products = Product::findOrFail($id);
         $products->fill($request->all());
         // xử lý images
