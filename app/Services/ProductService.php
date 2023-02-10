@@ -19,7 +19,7 @@ class ProductService
 {
     public function storeProduct($request)
     {
-        $server_storage = 'http://172.16.21.143/';
+        $server_storage = 'http://viet.fresher.ameladev.click/';
         $cate = $request->validated();
         // relationship
         $products = Product::all();
