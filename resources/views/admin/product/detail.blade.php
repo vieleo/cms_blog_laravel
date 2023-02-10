@@ -21,7 +21,14 @@
         </tr>
         <tr>
             <th>{{ trans('messages.quantity') }}</th>
-            <td>{{ $products->quantity }}</td>
+            <td>
+                @if ($products->quantity > 0)
+                    {{ $products->quantity }}
+                @else
+                    <p style="color:red"> Hết hàng </p>
+                @endif
+
+            </td>
         </tr>
         <tr>
             <th>{{ trans('messages.price_old') }} (VNĐ)</th>

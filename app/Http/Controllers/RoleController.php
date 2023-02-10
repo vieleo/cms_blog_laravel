@@ -122,12 +122,8 @@ class RoleController extends Controller
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'gender' => $request->gender,
-                // 'role' => $request->role,
 
             ]);
-            // $user->roles()->update([
-            //     'role' => $request->role,
-            // ]);
             //Kiểm tra delete để trả về một thông báo
             if ($user) {
                 Session::flash('success', 'Update Successful !');
@@ -154,7 +150,6 @@ class RoleController extends Controller
             {
                 $users = User::findOrFail($id);
                 $users->delete();
-
                 //Kiểm tra delete để trả về một thông báo
                 if ($users) {
                     Session::flash('success', 'Delete Successful !');
