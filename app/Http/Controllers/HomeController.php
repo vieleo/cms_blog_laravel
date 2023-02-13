@@ -32,7 +32,7 @@ class HomeController extends Controller
 
     public function show()
     {
-        $order = Order::orderBy('created_at', 'DESC')->get();
+        $order = Order::orderBy('created_at', 'DESC')->skip(0)->take(5)->get();
         $products = Product::all()->count();
         $user = User::all()->count();
         $total = Order::all()->sum('subtotal');
