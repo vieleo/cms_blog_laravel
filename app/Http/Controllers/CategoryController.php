@@ -23,7 +23,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = DB::table('categories')->paginate(Params::LIMIT_SHOW);
-        return view('admin.category.list', compact('categories'));
+        $total_cate = Category::all();
+        return view('admin.category.list', compact('categories','total_cate'));
     }
 
     /**

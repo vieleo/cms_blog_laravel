@@ -24,7 +24,8 @@ class RoleController extends Controller
     public function index()
     {
         $users = User::paginate(10);
-        return view('admin.role.list',compact('users'));
+        $total_user = User::all();
+        return view('admin.role.list',compact('users', 'total_user'));
     }
 
     /**

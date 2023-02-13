@@ -16,6 +16,8 @@
     <div class="form-group">
     <h2>{{ trans('messages.user_manager') }}</h2>
     <a class="btn btn-primary" href="/admin/add-user">{{ trans('messages.create_new_user') }}</a>
+    <p>Number of orders: {{ count($total_user) }}</p>
+
     </div>
     <table class="table table-bordered" id="table">
         <tr style="text-align: center;">

@@ -5,8 +5,8 @@
     <div class="form-group">
     <h2>{{ trans('messages.list_order') }}</h2>
     </div>
-    <p>Total Orders: {{ count($order) }}</p>
-    <h3>Tổng doanh thu: {{ number_format($order->sum('subtotal',0,'.','.')) }} VNĐ</h3>
+    <p>Total Orders: {{ count($total_order) }}</p>
+    <h3>Tổng doanh thu: {{ number_format($total_order->sum('subtotal',0,'.','.')) }} VNĐ</h3>
     <table class="table table-bordered" id="example">
         <thead>
             <tr style="text-align: center;">

@@ -6,9 +6,6 @@ use App\Constants\Params;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\Product;
-use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Exception;
 
@@ -23,7 +20,8 @@ class OrderController extends Controller
     public function index()
     {
         $order = Order::paginate(Params::LIMIT_SHOW);
-        return view('admin.order.cart', compact('order'));
+        $total_order = Order::all();
+        return view('admin.order.cart', compact('order', 'total_order'));
     }
 
 
