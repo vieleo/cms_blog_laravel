@@ -33,10 +33,11 @@ class HomeController extends Controller
     public function show()
     {
         $order = Order::orderBy('created_at', 'DESC')->skip(0)->take(5)->get();
+        $total_order = Order::all();
         $products = Product::all()->count();
         $user = User::all()->count();
         $total = Order::all()->sum('subtotal');
-        return view('dashboard', compact('order', 'products', 'user', 'total'));
+        return view('dashboard', compact('order', 'products', 'user', 'total', 'total_order'));
     }
 
     public function changeLanguage($language)
