@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Constants\Params;
 use Illuminate\Support\Facades\DB;
 use App\Services\ProductService;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
-use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Exception;
@@ -24,10 +25,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::orderBy('created_at', 'DESC')->paginate(2);
+        $product = Product::orderBy('created_at', 'DESC')->paginate(Params::LIMIT_SHOW);
         // search
         if ($key = request()->key) {
-            $product = Product::orderBy('created_at', 'DESC')->where('name', 'like', '%'.$key.'%')->paginate(2);
+            $product = Product::orderBy('created_at', 'DESC')->where('name', 'like', '%'.$key.'%')->paginate(Params::LIMIT_SHOW);
         }
         return view('admin.product.list', compact('product'));
     }

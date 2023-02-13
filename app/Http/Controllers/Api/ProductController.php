@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function categories_products($id)
     {
         $categories = Category::find($id)->products->pluck('id');
-        $products = Product::with('images')->whereIn('id',$categories)->paginate(10);
+        $products = Product::with('images')->whereIn('id',$categories)->paginate(Params::LIMIT_SHOW);
          return response(['data'=>$products]);
     }
 

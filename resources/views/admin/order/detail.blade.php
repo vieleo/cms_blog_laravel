@@ -7,10 +7,6 @@
 
 </div>
 
-    {{-- <div class="form-group">
-    <h2>Chi tiết đơn hàng</h2>
-    </div> --}}
-{{-- @dd($user) --}}
     <div class="form-group">
         <h4 style="text-align: center">{{ trans('messages.SHIPPING_INFORMATION') }}</h4>
     </div>

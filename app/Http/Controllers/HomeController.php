@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
 
 
@@ -25,6 +28,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function show()
+    {
+        $order = Order::orderBy('created_at', 'DESC')->get();
+        $products = Product::all()->count();
+        $user = User::all()->count();
+        $total = Order::all()->sum('subtotal');
+        return view('dashboard', compact('order', 'products', 'user', 'total'));
     }
 
     public function changeLanguage($language)
