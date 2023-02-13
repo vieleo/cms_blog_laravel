@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Constants\Params;
 
 class ProductController extends Controller
 {
     function search(Request $request)
     {
 
-        $result = Product::with('images')->filter()->paginate($request->limit);
+        $result = Product::with('images')->filter()->paginate(Params::LIMIT_SHOW);
 
         if (count($result)) {
             return Response()->json($result);
@@ -32,15 +34,22 @@ class ProductController extends Controller
     }
 
     // api all-products
-    public function all_products()
+    public function all_products(Request $request)
     {
-        // $product = Product::orderBy('created_at', 'DESC')->paginate(10);
-        // return response(['data'=>$product]);
-        $product = Product::with(['categories', 'images'])->paginate(8);
-        if ($key = request()->key) {
-            $product = Product::orderBy('created_at', 'DESC')->where('name', 'like', '%'.$key.'%')->paginate(10);
-        }
-         return response($product);
+        // $product = Product::with(['categories', 'images'])->paginate(10);
+        // if ($key = request()->key) {
+        //     $product = Product::orderBy('created_at', 'DESC')->where('name', 'like', '%'.$key.'%')->paginate(10);
+        // }
+        //  return response($product);
+
+
+        $param = $request->input('keyword');
+        $products = Product::with('images')->paginate(Params::LIMIT_SHOW);
+
+        return response()->json([
+            'product' => $products,
+        ]);
+
     }
 
     // api list-images-thuộc-products
@@ -55,6 +64,13 @@ class ProductController extends Controller
     {
         $images = Product::find($id)->images->first();
         return response(['data'=>$images]);
+    }
+
+    public function product_detail($id)
+    {
+        $products = Product::with('images')->find($id);
+
+        return  Response()->json($products);
     }
 
 

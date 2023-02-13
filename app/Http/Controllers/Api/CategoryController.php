@@ -12,7 +12,7 @@ class CategoryController extends Controller
     // api list-category
     public function categories()
     {
-        $categories = DB::table('categories')->paginate(5);
+        $categories = DB::table('categories')->paginate(2);
         return response(['data'=>$categories]);
     }
 

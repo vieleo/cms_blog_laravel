@@ -8,8 +8,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Api\OrderController;
-
-
+use App\Http\Controllers\OrderController as ControllersOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +28,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // admin
 Route::group(['prefix' => 'admin'], function () {
+
+    Route::post('/send_mail', [OrderController::class, 'sendMail']);
+
     // Categories //
     Route::get('/list-category', [CategoryController::class, 'categories'])->name('categories');
 
@@ -45,8 +47,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/images_avatar_products/{id}', [ProductController::class, 'images_avatar_products'])->name('images_avatar_products');
 
     // search
-    Route::get('/all-product', [ProductController::class, 'search'])->name('search');
+    Route::get('all-product/', [ProductController::class, 'search'])->name('search');
 
+    //product-details
+    Route::get('/product/{id}',[ProductController::class,'product_detail']);
 
     // role
     Route::get('/list-user', [RoleController::class, 'index'])->name('index');
@@ -75,5 +79,4 @@ Route::middleware('api')->prefix('/')->group(function (){
 
 
 });
-
 // Route::middleware('api')->post('login',[AuthController::class,'login']);
