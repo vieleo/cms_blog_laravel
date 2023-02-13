@@ -77,6 +77,12 @@ return [
     'invoice_code' => 'Invoice Code',
     'status_payment_method' => 'Payment Status',
     'Paid'=>'Paid',
+    'total_users' => 'Total Users',
+    'total_products' => 'Total Products',
+    'total_order' => 'Total Order',
+    'total_revenue' => 'Total Revenue',
+    'recent_orders' => 'Recents Orders',
+
 
 
 ];

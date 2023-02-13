@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Params;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
@@ -21,13 +22,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // $order = DB::table('orders')->user();
-        $order = Order::paginate(10);
-        // $data = Order::find(3)->orderItem->toArray();
-
-        // $data = Product::find(1)->orderDetailWithProduct->toArray();
-// dd($data);
-
+        $order = Order::paginate(Params::LIMIT_SHOW);
         return view('admin.order.cart', compact('order'));
     }
 

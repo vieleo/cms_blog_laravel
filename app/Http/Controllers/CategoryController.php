@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Exception;
 use Illuminate\Support\Facades\Redirect;
+use App\Constants\Params;
+
 
 class CategoryController extends Controller
 {
@@ -20,7 +22,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = DB::table('categories')->paginate(10);
+        $categories = DB::table('categories')->paginate(Params::LIMIT_SHOW);
         return view('admin.category.list', compact('categories'));
     }
 

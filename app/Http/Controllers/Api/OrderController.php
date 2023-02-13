@@ -58,14 +58,12 @@ class OrderController extends Controller
     }
 
 
-    public function sendMail(){
-        $user = auth('api')->user();
-        $user->notify(new InvoicePaid());
-
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Successfully payment',
-        ]);
-    }
+    // public function sendMail(){
+    //     $user = auth('api')->user();
+    //     $user->notify(new InvoicePaid());
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'message' => 'Successfully payment',
+    //     ]);
+    // }
 }

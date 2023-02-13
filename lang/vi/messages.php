@@ -77,16 +77,10 @@ return [
     'invoice_code' => 'Mã hoá đơn',
     'status_payment_method' => 'Trạng thái thanh toán',
     'Paid'=>'Đã thanh toán',
-
-
-
-
-
-
-
-
-
-
-
+    'total_users' => 'Tổng số người dùng',
+    'total_products' => 'Tổng số sản phẩm',
+    'total_order' => 'Tổng số đơn hàng',
+    'total_revenue' => 'Tổng doanh thu',
+    'recent_orders' => 'Đơn hàng gần đây',
 
 ];
