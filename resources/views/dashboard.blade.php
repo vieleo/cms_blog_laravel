@@ -28,7 +28,7 @@
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">{{ trans('messages.total_order') }}</p>
-                                <h6 class="mb-0">{{ count($order) }}</h6>
+                                <h6 class="mb-0">{{ count($total_order) }}</h6>
                             </div>
                         </div>
                     </div>
