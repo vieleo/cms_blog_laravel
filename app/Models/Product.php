@@ -76,7 +76,7 @@ class Product extends Model
             $products->orderBy('price_new', 'desc');
         }
         if (request('price') == 'asc') {
-            $products->orderBy('price', 'asc');
+            $products->orderBy('price_new', 'asc');
         }
 
         return $products;

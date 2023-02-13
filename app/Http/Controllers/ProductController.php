@@ -24,10 +24,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::orderBy('created_at', 'DESC')->paginate(10);
+        $product = Product::orderBy('created_at', 'DESC')->paginate(2);
         // search
         if ($key = request()->key) {
-            $product = Product::orderBy('created_at', 'DESC')->where('name', 'like', '%'.$key.'%')->paginate(10);
+            $product = Product::orderBy('created_at', 'DESC')->where('name', 'like', '%'.$key.'%')->paginate(2);
         }
         return view('admin.product.list', compact('product'));
     }

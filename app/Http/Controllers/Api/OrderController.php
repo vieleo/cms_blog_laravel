@@ -8,9 +8,12 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\InvoicePaid;
 
 class OrderController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -45,11 +48,24 @@ class OrderController extends Controller
                 'quantity' => $quantity,
             ]);
         }
-
+        // $user = auth('api')->user();
+        // $user->notify(new InvoicePaid());
         return response()->json([
             'status' => 'success',
             'message' => 'Successfully payment',
             'data' =>$order,
+        ]);
+    }
+
+
+    public function sendMail(){
+        $user = auth('api')->user();
+        $user->notify(new InvoicePaid());
+
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully payment',
         ]);
     }
 }
